@@ -43,4 +43,8 @@ export class UsuarioProvider {
 	getAuthorization(): string {
 		return window.localStorage.getItem(this.commons.getAuthorizationStorageKey());
 	}
+
+	deleteAuthorization(){
+		window.localStorage.removeItem(this.commons.getAuthorizationStorageKey());
+	}
 }
