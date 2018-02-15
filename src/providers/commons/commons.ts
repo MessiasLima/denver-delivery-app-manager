@@ -6,16 +6,27 @@ export class CommonsProvider {
 		return "http://localhost:8080"
 	}
 
-	getAuthorizationStorageKey(){
+	getAuthorizationStorageKey() {
 		return "br.com.westdelivery.Authorization";
 	}
 
+	getUsuarioStorageKey() {
+		return "br.com.westdelivery.Usuario";
+	}
+
 	getCommonHeaders() {
-		return {
+
+		let headers: any = {
 			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-				"Authorization": window.localStorage.getItem(this.getAuthorizationStorageKey())
+				"Content-Type": "application/x-www-form-urlencoded"
 			}
 		}
+
+		let authorization = window.localStorage.getItem(this.getAuthorizationStorageKey());
+
+		if (authorization){
+			headers.headers.Authorization = window.localStorage.getItem(this.getAuthorizationStorageKey());
+		}
+		return headers;
 	}
 }

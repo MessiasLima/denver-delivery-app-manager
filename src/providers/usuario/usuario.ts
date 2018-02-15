@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommonsProvider } from '../commons/commons';
+import { Usuario } from '../../model/usuario';
 
 /*
   Generated class for the UsuarioProvider provider.
@@ -14,21 +15,32 @@ export class UsuarioProvider {
 	constructor(public http: HttpClient, public commons: CommonsProvider) { }
 
 	login(dadosLogin: any) {
-		console.log(dadosLogin);
-
 		let data = this.encodeUrlDadosLogin(dadosLogin);
 		return this.http.post(
 			this.commons.getHost() + "/usuario/login",
 			data,
-			{
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded"
-				}
-			}
+			this.commons.getCommonHeaders()
 		);
 	}
 
 	private encodeUrlDadosLogin(dadosLogin: any): string {
 		return "login=" + dadosLogin.login + "&senha=" + dadosLogin.senha;
+	}
+
+	getUsuario(): Usuario {
+		let usuarioString = window.localStorage.getItem(this.commons.getUsuarioStorageKey());
+		return JSON.parse(usuarioString);
+	}
+
+	storeUsuario(usuario: Usuario) {
+		window.localStorage.setItem(this.commons.getUsuarioStorageKey(), JSON.stringify(usuario));
+	}
+
+	storeAuthorization(authorization: string) {
+		window.localStorage.setItem(this.commons.getAuthorizationStorageKey(), authorization);
+	}
+
+	getAuthorization(): string {
+		return window.localStorage.getItem(this.commons.getAuthorizationStorageKey());
 	}
 }

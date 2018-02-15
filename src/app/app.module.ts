@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { CommonsProvider } from '../providers/commons/commons';
 import { HttpClientModule } from '@angular/common/http';
+import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabelecimentos.module';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 	imports: [
 		BrowserModule,
 		IonicModule.forRoot(MyApp),
-		HttpClientModule
+		HttpClientModule,
+		EstabelecimentosPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
