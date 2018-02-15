@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Cidades</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<loading [hidden]="!loading"></loading>
+	<error-message [hidden]="!error" message="Falha ao recuperar as cidades" (action)="listCidades()"></error-message>
+
+	<ion-list>
+		<ion-item *ngFor="let cidade of cidades">
+			<ion-icon name="home"></ion-icon>
+			{{ cidade.nome }}
+			<button clear ion-button icon-only item-end>
+				<ion-icon name="md-create"></ion-icon>
+			</button>
+			<button clear ion-button icon-only item-end>
+				<ion-icon name="trash"></ion-icon>
+			</button>
+		</ion-item>
+	</ion-list>
+
+	<ion-fab bottom right>
+		<button ion-fab (click)="newCidade()">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-fab>
+</ion-content>

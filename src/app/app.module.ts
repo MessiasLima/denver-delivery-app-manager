@@ -10,6 +10,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { CommonsProvider } from '../providers/commons/commons';
 import { HttpClientModule } from '@angular/common/http';
 import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabelecimentos.module';
+import { SettingsPageModule } from '../pages/settings/settings.module';
+import { CidadeProvider } from '../providers/cidade/cidade';
 
 @NgModule({
 	declarations: [
@@ -18,9 +20,13 @@ import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabeleci
 	],
 	imports: [
 		BrowserModule,
-		IonicModule.forRoot(MyApp),
+		IonicModule.forRoot(MyApp,{
+			backButtonText: 'Voltar',
+			mode: "ios"
+		}),
 		HttpClientModule,
-		EstabelecimentosPageModule
+		EstabelecimentosPageModule,
+		SettingsPageModule,
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
@@ -32,7 +38,8 @@ import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabeleci
 		SplashScreen,
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		UsuarioProvider,
-		CommonsProvider
+		CommonsProvider,
+    CidadeProvider
 	]
 })
 export class AppModule { }
