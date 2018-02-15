@@ -7,14 +7,14 @@
 	<loading [hidden]="!loading"></loading>
 	<error-message [hidden]="!error" message="Falha ao recuperar as cidades" (action)="listCidades()"></error-message>
 
-	<ion-list>
+	<ion-list [hidden]="loading || error" >
 		<ion-item *ngFor="let cidade of cidades">
 			<ion-icon name="home"></ion-icon>
 			{{ cidade.nome }}
 			<button clear ion-button icon-only item-end>
 				<ion-icon name="md-create"></ion-icon>
 			</button>
-			<button clear ion-button icon-only item-end>
+			<button (click) = "promptDeleteCidade(cidade)" clear ion-button icon-only item-end>
 				<ion-icon name="trash"></ion-icon>
 			</button>
 		</ion-item>

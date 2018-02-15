@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { CidadeProvider } from '../../providers/cidade/cidade';
 import { Cidade } from '../../model/cidade';
 @IonicPage()
@@ -17,7 +17,8 @@ export class CidadesPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private cidadeService: CidadeProvider,
-		private alertController: AlertController
+		private alertController: AlertController,
+		private toastController: ToastController
 	) {
 	}
 
@@ -75,15 +76,64 @@ export class CidadesPage {
 				},
 			],
 			buttons: [
-				{text: "Cancelar"},
+				{ text: "Cancelar" },
 				{
 					text: "Salvar",
 					handler: data => {
-						console.log(data);
+						this.saveCidade(data);
 					}
 				}
 			]
 		});
 		prompt.present();
+	}
+
+	private saveCidade(cidade: Cidade) {
+		this.showLoading();
+		this.cidadeService.saveCidade(cidade).subscribe((data) => {
+			this.hideLoading();
+			this.listCidades();
+		}, (err) => {
+			this.hideLoading();
+			this.toastController.create({
+				message: "Ocorreu um erro ao salvar a cidade",
+				duration: 3000
+			}).present();
+		});
+	}
+
+	promptDeleteCidade(cidade: Cidade) {
+		let prompt = this.alertController.create({
+			title: "Deletar cidade",
+			message: "Tem certeza que deseja deletar " + cidade.nome + "?",
+			buttons: [
+				{ text: "Cancelar" },
+				{
+					text: "Deletar",
+					handler: data => {
+						this.deleteCidade(cidade);
+					}
+				}
+			]
+		});
+		prompt.present();
+	}
+
+	private deleteCidade(cidade: Cidade) {
+		this.showLoading();
+		this.cidadeService.deleteCidade(cidade).subscribe((data) => {
+			this.hideLoading();
+			this.listCidades();
+		}, (err) => {
+			this.hideLoading();
+			if (err.status == 200) {
+				this.listCidades();
+			} else {
+				this.toastController.create({
+					message: "Ocorreu um erro ao deletar a cidade",
+					duration: 3000
+				}).present();
+			}
+		});
 	}
 }
