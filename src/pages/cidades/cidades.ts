@@ -61,11 +61,12 @@ export class CidadesPage {
 	private showError() {
 		this.error = true;
 	}
+
 	private hideError() {
 		this.error = false;
 	}
 
-	newCidade() {
+	promptSaveCidade() {
 		let prompt = this.alertController.create({
 			title: "Nova cidade",
 			message: "Digite o nome da cidade",
@@ -134,6 +135,46 @@ export class CidadesPage {
 					duration: 3000
 				}).present();
 			}
+		});
+	}
+
+	promptUpdateCidade(cidade: Cidade){
+		let prompt = this.alertController.create({
+			title: "Atualizar cidade",
+			message: "Atualize o nome da cidade",
+			inputs: [
+				{
+					name: "nome",
+					placeholder: "Nome da cidade",
+					value: cidade.nome
+				},
+			],
+			buttons: [
+				{ text: "Cancelar" },
+				{
+					text: "Salvar",
+					handler: data => {
+						cidade.nome = data.nome;
+						this.updateCidade(cidade);
+					}
+				}
+			]
+		});
+		prompt.present();
+	}
+
+	private updateCidade(cidade: Cidade){
+		this.showLoading();
+		this.cidadeService.updateCidade(cidade).subscribe((data)=>{
+			this.hideLoading();
+			this.listCidades();
+		}, (err)=>{
+			this.toastController.create({
+				message: "Ocorreu um erro ao atualizar a cidade",
+				duration: 3000
+			}).present();
+			this.hideLoading();
+			this.listCidades();
 		});
 	}
 }

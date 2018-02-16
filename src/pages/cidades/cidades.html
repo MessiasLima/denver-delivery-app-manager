@@ -11,7 +11,7 @@
 		<ion-item *ngFor="let cidade of cidades">
 			<ion-icon name="home"></ion-icon>
 			{{ cidade.nome }}
-			<button clear ion-button icon-only item-end>
+			<button (click)="promptUpdateCidade(cidade)" clear ion-button icon-only item-end>
 				<ion-icon name="md-create"></ion-icon>
 			</button>
 			<button (click) = "promptDeleteCidade(cidade)" clear ion-button icon-only item-end>
@@ -21,7 +21,7 @@
 	</ion-list>
 
 	<ion-fab bottom right>
-		<button ion-fab (click)="newCidade()">
+		<button ion-fab (click)="promptSaveCidade()">
 			<ion-icon name="add"></ion-icon>
 		</button>
 	</ion-fab>

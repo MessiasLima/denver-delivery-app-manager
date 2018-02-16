@@ -19,6 +19,14 @@ export class CidadeProvider {
 		);
 	}
 
+	updateCidade(cidade:Cidade){
+		return this.http.put(
+			this.commons.getHost() + "/cidade",
+			cidade,
+			this.commons.getPayloadHeaders()
+		);
+	}
+
 	deleteCidade(cidade: Cidade) {
 		let options: any = {
 			params: {
