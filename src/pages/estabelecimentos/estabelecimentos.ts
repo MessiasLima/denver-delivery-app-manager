@@ -14,6 +14,8 @@ import { Estabelecimento } from '../../model/estabelecimento';
 export class EstabelecimentosPage {
 
 	estabelecimentos: Estabelecimento[];
+	loading: boolean = false;
+	error: boolean = false;
 
 	constructor(
 		public navCtrl: NavController,
@@ -60,19 +62,33 @@ export class EstabelecimentosPage {
 	}
 
 	listEstabelecimentos(refresher: any) {
+		if (refresher === undefined) {
+			this.loading = true;
+		}
+		this.error = false;
+
 		this.estabelecimentoService.listEstabelecimentos().subscribe(
 			(data) => {
 				this.estabelecimentos = this.dataToEstabelecimentoArray(data);
-				if(refresher != null){
-					refresher.complete();
-				}
+				this.hideLoading(refresher);
 			},
-			(err) => { }
+			(err) => {
+				this.error = true;
+				this.hideLoading(refresher);
+			}
 		);
 	}
 
+	private hideLoading(refresher:any){
+		if (refresher != null) {
+			refresher.complete();
+		}else{
+			this.loading = false;
+		}
+	}
+
 	dataToEstabelecimentoArray(data: any): Estabelecimento[] {
-		let estabelecimentos : Estabelecimento[] = [];
+		let estabelecimentos: Estabelecimento[] = [];
 		data.forEach(element => {
 			estabelecimentos.push({
 				id: element.id,

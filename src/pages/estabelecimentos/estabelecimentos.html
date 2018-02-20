@@ -15,6 +15,9 @@
 		</ion-refresher-content>
 	</ion-refresher>
 
+	<error-message [hidden]="!error" message="Falha ao carregar os estabelecimentos" (action)="listEstabelecimentos(undefined)"></error-message>
+	<loading [hidden]="!loading"></loading>
+
 	<ion-card *ngFor="let estabelecimento of estabelecimentos">
 
 		<ion-item>
