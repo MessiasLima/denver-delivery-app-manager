@@ -8,8 +8,38 @@
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
+<ion-content>
 
+	<ion-refresher (ionRefresh)="listEstabelecimentos($event)">
+		<ion-refresher-content>
+		</ion-refresher-content>
+	</ion-refresher>
 
-<ion-content padding>
+	<ion-card *ngFor="let estabelecimento of estabelecimentos">
 
+		<ion-item>
+			<h2>{{ estabelecimento.nome }}</h2>
+			<p>{{ estabelecimento.cidade.nome }}</p>
+		</ion-item>
+
+		<img src="{{ estabelecimento.urlImage }}">
+
+		<ion-card-content>
+			<p>{{ estabelecimento.descricao }}</p>
+		</ion-card-content>
+
+		<ion-row>
+			<ion-col>
+			</ion-col>
+			<ion-col>
+
+			</ion-col>
+			<ion-col>
+				<button ion-button icon-left clear small>
+					<div>Gerenciar</div>
+					<ion-icon name="share-alt"></ion-icon>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
 </ion-content>

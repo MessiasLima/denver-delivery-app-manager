@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabelecimentos.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { CidadeProvider } from '../providers/cidade/cidade';
+import { EstabelecimentoProvider } from '../providers/estabelecimento/estabelecimento';
 
 @NgModule({
 	declarations: [
@@ -20,7 +21,7 @@ import { CidadeProvider } from '../providers/cidade/cidade';
 	],
 	imports: [
 		BrowserModule,
-		IonicModule.forRoot(MyApp,{
+		IonicModule.forRoot(MyApp, {
 			backButtonText: 'Voltar',
 			mode: "ios"
 		}),
@@ -39,7 +40,8 @@ import { CidadeProvider } from '../providers/cidade/cidade';
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		UsuarioProvider,
 		CommonsProvider,
-    CidadeProvider
+		CidadeProvider,
+		EstabelecimentoProvider
 	]
 })
 export class AppModule { }
