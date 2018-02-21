@@ -20,29 +20,22 @@
 
 	<ion-card *ngFor="let estabelecimento of estabelecimentos">
 
-		<ion-item>
+		<ion-item (click)="goToEstabelecimentoDetalhe(estabelecimento)">
 			<h2>{{ estabelecimento.nome }}</h2>
 			<p>{{ estabelecimento.cidade.nome }}</p>
 		</ion-item>
 
-		<img src="{{ estabelecimento.urlImage }}">
+		<img (click)="goToEstabelecimentoDetalhe(estabelecimento)" src="{{ estabelecimento.urlImage }}">
 
-		<ion-card-content>
+		<ion-card-content (click)="goToEstabelecimentoDetalhe(estabelecimento)">
 			<p>{{ estabelecimento.descricao }}</p>
 		</ion-card-content>
 
-		<ion-row>
-			<ion-col>
-			</ion-col>
-			<ion-col>
-
-			</ion-col>
-			<ion-col>
-				<button ion-button icon-left clear small>
-					<div>Gerenciar</div>
-					<ion-icon name="share-alt"></ion-icon>
-				</button>
-			</ion-col>
-		</ion-row>
+		<ion-buttons end>
+			<button ion-button icon-left clear small (click)="goToEstabelecimentoDetalhe(estabelecimento)">
+				<div>Gerenciar</div>
+				<ion-icon name="share-alt"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-card>
 </ion-content>

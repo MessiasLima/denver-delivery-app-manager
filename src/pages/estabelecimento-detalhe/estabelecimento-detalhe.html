@@ -1,0 +1,32 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{ estabelecimento.nome }}</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<img src="{{ estabelecimento.urlImage }}">
+	<ion-card>
+		<ion-card-header>
+			{{ estabelecimento.nome }}
+		</ion-card-header>
+		<ion-card-content>
+			<p>{{ estabelecimento.descricao }}</p>
+		</ion-card-content>
+
+		<ion-buttons end>
+			<button ion-button icon-left clear small (click)="promptUpdateEstabelecimeto()">
+				<ion-icon name="md-create"></ion-icon>
+				<div>Editar</div>
+			</button>
+		</ion-buttons>
+
+	</ion-card>
+	<ion-card>
+		<ion-card-header>
+			Cidade
+		</ion-card-header>
+		<ion-card-content>
+			<p>{{ estabelecimento.cidade.nome }}</p>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

@@ -6,6 +6,7 @@ import { SettingsPage } from '../settings/settings';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { EstabelecimentoProvider } from '../../providers/estabelecimento/estabelecimento';
 import { Estabelecimento } from '../../model/estabelecimento';
+import { EstabelecimentoDetalhePage } from '../estabelecimento-detalhe/estabelecimento-detalhe';
 @IonicPage()
 @Component({
 	selector: 'page-estabelecimentos',
@@ -79,10 +80,10 @@ export class EstabelecimentosPage {
 		);
 	}
 
-	private hideLoading(refresher:any){
+	private hideLoading(refresher: any) {
 		if (refresher != null) {
 			refresher.complete();
-		}else{
+		} else {
 			this.loading = false;
 		}
 	}
@@ -103,5 +104,9 @@ export class EstabelecimentosPage {
 			});
 		});
 		return estabelecimentos;
+	}
+
+	goToEstabelecimentoDetalhe(estabelecimento: Estabelecimento) {
+		this.navCtrl.push(EstabelecimentoDetalhePage, { data: estabelecimento });
 	}
 }

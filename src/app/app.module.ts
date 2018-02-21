@@ -13,6 +13,7 @@ import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabeleci
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { CidadeProvider } from '../providers/cidade/cidade';
 import { EstabelecimentoProvider } from '../providers/estabelecimento/estabelecimento';
+import { EstabelecimentoDetalhePageModule } from '../pages/estabelecimento-detalhe/estabelecimento-detalhe.module';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { EstabelecimentoProvider } from '../providers/estabelecimento/estabeleci
 		HttpClientModule,
 		EstabelecimentosPageModule,
 		SettingsPageModule,
+		EstabelecimentoDetalhePageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
