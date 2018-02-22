@@ -3,18 +3,21 @@ import { IonicPageModule } from 'ionic-angular';
 import { EstabelecimentosPage } from './estabelecimentos';
 import { EstabelecimentosMenu } from './estabelecimentos.menu'
 import { ComponentsModule } from '../../components/components.module';
+import { EstabelecimentoNewComponent } from './estabelecimento-new/estabelecimento-new';
 
 @NgModule({
 	declarations: [
 		EstabelecimentosPage,
-		EstabelecimentosMenu
+		EstabelecimentosMenu,
+		EstabelecimentoNewComponent
 	],
 	imports: [
 		IonicPageModule.forChild(EstabelecimentosPage),
 		ComponentsModule
 	],
 	entryComponents:[
-		EstabelecimentosMenu
+		EstabelecimentosMenu,
+		EstabelecimentoNewComponent
 	]
 })
 export class EstabelecimentosPageModule { }

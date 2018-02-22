@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { EstabelecimentoDetalhePage } from './estabelecimento-detalhe';
 
 @NgModule({
-  declarations: [
-    EstabelecimentoDetalhePage,
-  ],
-  imports: [
-    IonicPageModule.forChild(EstabelecimentoDetalhePage),
-  ],
+	declarations: [
+		EstabelecimentoDetalhePage
+	],
+	imports: [
+		IonicPageModule.forChild(EstabelecimentoDetalhePage),
+	]
 })
-export class EstabelecimentoDetalhePageModule {}
+export class EstabelecimentoDetalhePageModule { }

@@ -20,22 +20,32 @@
 
 	<ion-card *ngFor="let estabelecimento of estabelecimentos">
 
-		<ion-item (click)="goToEstabelecimentoDetalhe(estabelecimento)">
+		<ion-item>
 			<h2>{{ estabelecimento.nome }}</h2>
 			<p>{{ estabelecimento.cidade.nome }}</p>
 		</ion-item>
 
-		<img (click)="goToEstabelecimentoDetalhe(estabelecimento)" src="{{ estabelecimento.urlImage }}">
+		<img src="{{ estabelecimento.urlImage }}">
 
-		<ion-card-content (click)="goToEstabelecimentoDetalhe(estabelecimento)">
+		<ion-card-content>
 			<p>{{ estabelecimento.descricao }}</p>
 		</ion-card-content>
 
 		<ion-buttons end>
-			<button ion-button icon-left clear small (click)="goToEstabelecimentoDetalhe(estabelecimento)">
-				<div>Gerenciar</div>
+			<button ion-button icon-left clear small>
+				<ion-icon name="albums"></ion-icon>
+				<div>Ver pedidos</div>
+			</button>
+			<button [hidden]="!isAdm()" ion-button icon-left clear small (click)="goToEstabelecimentoDetalhe(estabelecimento)">
 				<ion-icon name="share-alt"></ion-icon>
+				<div>Gerenciar</div>
 			</button>
 		</ion-buttons>
 	</ion-card>
+
+	<ion-fab [hidden]="!isAdmSistema()" bottom right>
+		<button ion-fab (click)="openNewEstabelecimentoModal()">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-fab>
 </ion-content>

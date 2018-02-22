@@ -6,8 +6,9 @@
 <ion-content>
 	<img src="{{ estabelecimento.urlImage }}">
 	<ion-card>
-		<ion-card-header>
+		<ion-card-header ion-item>
 			{{ estabelecimento.nome }}
+			<ion-badge item-end>{{ estabelecimento.cidade.nome }}</ion-badge>
 		</ion-card-header>
 		<ion-card-content>
 			<p>{{ estabelecimento.descricao }}</p>
@@ -19,14 +20,19 @@
 				<div>Editar</div>
 			</button>
 		</ion-buttons>
-
 	</ion-card>
+
 	<ion-card>
 		<ion-card-header>
-			Cidade
+			Gerenciamento
 		</ion-card-header>
 		<ion-card-content>
-			<p>{{ estabelecimento.cidade.nome }}</p>
+			<ion-buttons>
+				<button ion-button outline block icon-left>
+					<ion-icon name="people"></ion-icon>Usuários</button>
+				<button ion-button outline block icon-left>
+					<ion-icon name="list-box"></ion-icon>Cardápio</button>
+			</ion-buttons>
 		</ion-card-content>
 	</ion-card>
 </ion-content>

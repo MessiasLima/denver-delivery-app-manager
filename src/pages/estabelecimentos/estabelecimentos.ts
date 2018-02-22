@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Events, ModalController } from 'ionic-angular';
 import { EstabelecimentosMenu } from './estabelecimentos.menu';
 import { HomePage } from '../home/home';
 import { SettingsPage } from '../settings/settings';
@@ -7,6 +7,8 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { EstabelecimentoProvider } from '../../providers/estabelecimento/estabelecimento';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoDetalhePage } from '../estabelecimento-detalhe/estabelecimento-detalhe';
+import { Usuario } from '../../model/usuario';
+import { EstabelecimentoNewComponent } from './estabelecimento-new/estabelecimento-new';
 @IonicPage()
 @Component({
 	selector: 'page-estabelecimentos',
@@ -24,8 +26,19 @@ export class EstabelecimentosPage {
 		public popoverController: PopoverController,
 		public events: Events,
 		public usuarioService: UsuarioProvider,
-		private estabelecimentoService: EstabelecimentoProvider
+		private estabelecimentoService: EstabelecimentoProvider,
+		public modalController: ModalController
 	) {
+	}
+
+	isAdm(): boolean {
+		let usuario = this.usuarioService.getUsuario();
+		return usuario.tipo != Usuario.TIPO_FUNCIONARIO;
+	}
+
+	isAdmSistema(): boolean {
+		let usuario = this.usuarioService.getUsuario();
+		return usuario.tipo == Usuario.TIPO_ADM_SISTEMA;
 	}
 
 	ionViewDidLoad() {
@@ -108,5 +121,11 @@ export class EstabelecimentosPage {
 
 	goToEstabelecimentoDetalhe(estabelecimento: Estabelecimento) {
 		this.navCtrl.push(EstabelecimentoDetalhePage, { data: estabelecimento });
+	}
+
+	openNewEstabelecimentoModal() {
+		console.log("Teste");
+		let modal = this.modalController.create(EstabelecimentoNewComponent);
+		modal.present();
 	}
 }
