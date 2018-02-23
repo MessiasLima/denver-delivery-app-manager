@@ -14,7 +14,8 @@ import { SettingsPageModule } from '../pages/settings/settings.module';
 import { CidadeProvider } from '../providers/cidade/cidade';
 import { EstabelecimentoProvider } from '../providers/estabelecimento/estabelecimento';
 import { EstabelecimentoDetalhePageModule } from '../pages/estabelecimento-detalhe/estabelecimento-detalhe.module';
-
+import { ImagePicker } from "@ionic-native/image-picker";
+import { Base64 } from "@ionic-native/base64";
 @NgModule({
 	declarations: [
 		MyApp,
@@ -43,7 +44,9 @@ import { EstabelecimentoDetalhePageModule } from '../pages/estabelecimento-detal
 		UsuarioProvider,
 		CommonsProvider,
 		CidadeProvider,
-		EstabelecimentoProvider
+		EstabelecimentoProvider,
+		ImagePicker,
+		Base64
 	]
 })
 export class AppModule { }

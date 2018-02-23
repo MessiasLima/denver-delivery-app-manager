@@ -41,4 +41,15 @@ export class CidadeProvider {
 			options
 		);
 	}
+
+	dataToCidadeArray(data: any): Cidade[] {
+		let cidades: Cidade[] = [];
+		data.forEach(element => {
+			cidades.push({
+				id: element.id,
+				nome: element.nome
+			});
+		});
+		return cidades;
+	}
 }

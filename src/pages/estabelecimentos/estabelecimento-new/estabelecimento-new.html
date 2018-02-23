@@ -9,17 +9,37 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-item>
-        <ion-label color="primary" stacked>Nome</ion-label>
-        <ion-input type="text" placeholder="Nome do estabelecimento"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label color="primary" stacked>Descrição</ion-label>
-        <ion-textarea type="text" placeholder="Descrição"></ion-textarea>
-    </ion-item>
-    <br>
-    <button ion-button outline block>Selecionar imagem</button>
-    <button ion-button block>
-        Salvar
-    </button>
+
+    <loading [hidden]="!loading"></loading>
+    <error-message (action)="listCidades()" [hidden]="!error" message="{{ errorMessage }}"></error-message>
+
+    <div [hidden]="loading">
+
+        <ion-item>
+            <ion-label color="primary" stacked>Nome</ion-label>
+            <ion-input [(ngModel)]="estabelecimento.nome" type="text" placeholder="Nome do estabelecimento"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Descrição</ion-label>
+            <ion-textarea [(ngModel)]="estabelecimento.descricao" type="text" placeholder="Descrição"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Cidade</ion-label>
+            <ion-select [(ngModel)]="selectedCidade">
+                <div *ngFor="let c of cidades">
+                    <ion-option value="{{ c }}">{{ c.nome }}</ion-option>
+                </div>
+            </ion-select>
+        </ion-item>
+
+        <br>
+        <button ion-button outline block (click)="pickImage()">Selecionar imagem</button>
+        <img src="{{ imageURI }}" alt="" />
+        <button ion-button block>
+            Salvar
+        </button>
+    </div>
+
 </ion-content>

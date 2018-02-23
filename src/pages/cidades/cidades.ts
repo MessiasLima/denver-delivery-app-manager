@@ -30,7 +30,7 @@ export class CidadesPage {
 		this.showLoading();
 		this.hideError();
 		this.cidadeService.listCidades().subscribe((data) => {
-			this.cidades = this.dataToCidadeArray(data);
+			this.cidades = this.cidadeService.dataToCidadeArray(data);
 			this.hideLoading();
 		}, (err) => {
 			console.log(err);
@@ -39,16 +39,7 @@ export class CidadesPage {
 		});
 	}
 
-	private dataToCidadeArray(data: any) {
-		let cidades: Cidade[] = [];
-		data.forEach(element => {
-			cidades.push({
-				id: element.id,
-				nome: element.nome
-			});
-		});
-		return cidades;
-	}
+
 
 	private showLoading() {
 		this.loading = true;
