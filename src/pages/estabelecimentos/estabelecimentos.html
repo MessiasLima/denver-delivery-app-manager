@@ -25,7 +25,7 @@
 			<p>{{ estabelecimento.cidade.nome }}</p>
 		</ion-item>
 
-		<img src="{{ 'http://localhost:8080/download/' + (estabelecimento.urlImage || 'default.png' ) }}">
+		<img src="{{ getUrlImage(estabelecimento.urlImage) }}">
 
 		<ion-card-content>
 			<p>{{ estabelecimento.descricao }}</p>

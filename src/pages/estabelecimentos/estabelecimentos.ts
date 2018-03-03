@@ -9,6 +9,7 @@ import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoDetalhePage } from '../estabelecimento-detalhe/estabelecimento-detalhe';
 import { Usuario } from '../../model/usuario';
 import { EstabelecimentoNewComponent } from './estabelecimento-new/estabelecimento-new';
+import { CommonsProvider } from '../../providers/commons/commons';
 @IonicPage()
 @Component({
 	selector: 'page-estabelecimentos',
@@ -27,7 +28,8 @@ export class EstabelecimentosPage {
 		public events: Events,
 		public usuarioService: UsuarioProvider,
 		private estabelecimentoService: EstabelecimentoProvider,
-		public modalController: ModalController
+		public modalController: ModalController,
+		public commonService: CommonsProvider
 	) {
 	}
 
@@ -83,7 +85,7 @@ export class EstabelecimentosPage {
 
 		this.estabelecimentoService.listEstabelecimentos().subscribe(
 			(data) => {
-				this.estabelecimentos = this.dataToEstabelecimentoArray(data);
+				this.estabelecimentos = this.estabelecimentoService.dataToEstabelecimentoArray(data);
 				this.hideLoading(refresher);
 			},
 			(err) => {
@@ -101,22 +103,8 @@ export class EstabelecimentosPage {
 		}
 	}
 
-	dataToEstabelecimentoArray(data: any): Estabelecimento[] {
-		let estabelecimentos: Estabelecimento[] = [];
-		data.forEach(element => {
-			estabelecimentos.push({
-				id: element.id,
-				nome: element.nome,
-				descricao: element.descricao,
-				status: element.status,
-				latitude: element.latitude,
-				longitude: element.longitude,
-				idCidade: element.idCidade,
-				urlImage: element.urlImage,
-				cidade: element.cidade
-			});
-		});
-		return estabelecimentos;
+	getUrlImage(fileName: string): string {
+		return this.commonService.getHost() + "/download/" + ( fileName || 'default.png' ); 
 	}
 
 	goToEstabelecimentoDetalhe(estabelecimento: Estabelecimento) {

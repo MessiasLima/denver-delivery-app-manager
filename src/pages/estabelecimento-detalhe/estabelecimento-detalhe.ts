@@ -57,7 +57,7 @@ export class EstabelecimentoDetalhePage {
 	}
 
 	private saveEstabelecimento(estabelecimento: Estabelecimento) {
-		this.estabelecimentoService.saveEstabelecimeto(estabelecimento).subscribe(
+		this.estabelecimentoService.saveEstabelecimento(estabelecimento).subscribe(
 			(data)=>{
 				console.log(data);
 			},

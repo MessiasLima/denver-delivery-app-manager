@@ -83,20 +83,44 @@ export class EstabelecimentoNewComponent {
             this.estabelecimento.nome = this.form.controls.nome.value;
             this.estabelecimento.descricao = this.form.controls.descricao.value;
             this.estabelecimento.idCidade = this.form.controls.cidade.value;
-            this.saveEstabelecimento(this.estabelecimento);    
+            this.saveEstabelecimento(this.estabelecimento);
         } else {
 
         }
     }
 
-    private saveEstabelecimento(estabelecimento:Estabelecimento){
+    private showMessage(message: string) {
+        let toast = this.toastController.create({
+            message: message,
+            duration: 3000,
+            showCloseButton: true
+        });
+        toast.present();
+    }
+
+    private saveEstabelecimento(estabelecimento: Estabelecimento) {
         this.estabelecimentoService.saveEstabelecimento(estabelecimento).subscribe(
-            (data)=>{
-                console.log(data);
+            (data) => {
+                this.saveImage(this.estabelecimentoService.dataToEstabelecimento(data));
             },
-            (err)=>{
-                console.log(err);
+            (err) => {
+                this.showMessage("Ocorreu um erro ao salvar o estabelecimento.");
             }
         );
+    }
+
+    private saveImage(estabelecimento: Estabelecimento) {
+        if (this.imageURI) {
+            this.estabelecimentoService.saveImage(this.imageURI, estabelecimento.id).subscribe(
+                (data) => {
+                    this.showMessage("Estabelecimento salvo");
+                    console.log(data);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+        } else {
+            this.showMessage("Estabelecimento salvo");
+        }
     }
 }
