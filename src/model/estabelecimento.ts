@@ -12,5 +12,5 @@ export class Estabelecimento {
     longitude: number;
     idCidade: number;
     urlImage: string;
-    cidade: Cidade
+    cidade: Cidade;
 }

@@ -14,32 +14,39 @@
     <error-message (action)="listCidades()" [hidden]="!error" message="{{ errorMessage }}"></error-message>
 
     <div [hidden]="loading">
+        <form [formGroup]="form">
 
-        <ion-item>
-            <ion-label color="primary" stacked>Nome</ion-label>
-            <ion-input [(ngModel)]="estabelecimento.nome" type="text" placeholder="Nome do estabelecimento"></ion-input>
-        </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Nome</ion-label>
+                <ion-input name="nome" formControlName="nome" type="text" placeholder="Nome do estabelecimento"></ion-input>
+            </ion-item>
+            <span [hidden]="!(form.controls.nome.touched && form.controls.nome.errors)" class="error-label">O campo nome é obrigatório</span>
 
-        <ion-item>
-            <ion-label color="primary" stacked>Descrição</ion-label>
-            <ion-textarea [(ngModel)]="estabelecimento.descricao" type="text" placeholder="Descrição"></ion-textarea>
-        </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Descrição</ion-label>
+                <ion-textarea name="descricao" formControlName="descricao" type="text" placeholder="Descrição"></ion-textarea>
+            </ion-item>
+            <span [hidden]="!(form.controls.descricao.touched && form.controls.descricao.errors)" class="error-label">O campo descrição é obrigatório</span>
 
-        <ion-item>
-            <ion-label color="primary" stacked>Cidade</ion-label>
-            <ion-select [(ngModel)]="selectedCidade">
-                <div *ngFor="let c of cidades">
-                    <ion-option value="{{ c }}">{{ c.nome }}</ion-option>
-                </div>
-            </ion-select>
-        </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Cidade</ion-label>
+                <ion-select name="cidade" formControlName="cidade">
+                    <div *ngFor="let c of cidades">
+                        <ion-option value="{{ c.id }}">{{ c.nome }}</ion-option>
+                    </div>
+                </ion-select>
+            </ion-item>
+            <span [hidden]="!(form.controls.cidade.touched && form.controls.cidade.errors)" class="error-label">O campo cidade é obrigatório</span>
 
-        <br>
-        <button ion-button outline block (click)="pickImage()">Selecionar imagem</button>
-        <img src="{{ imageURI }}" alt="" />
-        <button ion-button block>
-            Salvar
-        </button>
+            <br>
+            <button ion-button outline block (click)="pickImage()">Selecionar imagem</button>
+            <img src="{{ imageURI }}" alt="" />
+
+            <button (click)="save()" type="submit" ion-button block>
+                Salvar
+            </button>
+
+        </form>
     </div>
 
 </ion-content>

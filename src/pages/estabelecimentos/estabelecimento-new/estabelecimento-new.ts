@@ -5,6 +5,9 @@ import { EstabelecimentoProvider } from '../../../providers/estabelecimento/esta
 import { Estabelecimento } from '../../../model/estabelecimento';
 import { CidadeProvider } from '../../../providers/cidade/cidade';
 import { Cidade } from '../../../model/cidade';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { ToastController } from 'ionic-angular';
+
 
 @Component({
     selector: 'estabelecimento-new',
@@ -20,16 +23,29 @@ export class EstabelecimentoNewComponent {
     error: boolean = false;
     errorMessage: string = "";
     selectedCidade: Cidade;
+    form: FormGroup;
 
     constructor(
         public imagePicker: ImagePicker,
         public base64: Base64,
         public estabelecimentoService: EstabelecimentoProvider,
-        public cidadeService: CidadeProvider
-    ) { }
+        public cidadeService: CidadeProvider,
+        public formBuilder: FormBuilder,
+        public toastController: ToastController
+    ) {
+        this.buildFormValidator();
+    }
 
     ionViewDidLoad() {
         this.listCidades();
+    }
+
+    private buildFormValidator() {
+        this.form = new FormGroup({
+            nome: new FormControl(this.estabelecimento.nome, Validators.required),
+            descricao: new FormControl(this.estabelecimento.descricao, Validators.required),
+            cidade: new FormControl(this.estabelecimento.idCidade, Validators.required),
+        });
     }
 
     listCidades() {
@@ -62,7 +78,25 @@ export class EstabelecimentoNewComponent {
         });
     }
 
-    save(estabelecimento: Estabelecimento) {
-        console.log(estabelecimento);
+    save() {
+        if (this.form.valid) {
+            this.estabelecimento.nome = this.form.controls.nome.value;
+            this.estabelecimento.descricao = this.form.controls.descricao.value;
+            this.estabelecimento.idCidade = this.form.controls.cidade.value;
+            this.saveEstabelecimento(this.estabelecimento);    
+        } else {
+
+        }
+    }
+
+    private saveEstabelecimento(estabelecimento:Estabelecimento){
+        this.estabelecimentoService.saveEstabelecimento(estabelecimento).subscribe(
+            (data)=>{
+                console.log(data);
+            },
+            (err)=>{
+                console.log(err);
+            }
+        );
     }
 }

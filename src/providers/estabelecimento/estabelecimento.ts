@@ -20,7 +20,7 @@ export class EstabelecimentoProvider {
 		);
 	}
 
-	saveEstabelecimeto(estabelecimento: Estabelecimento){
+	saveEstabelecimento(estabelecimento: Estabelecimento){
 		return this.http.post(
 			this.commons.getHost() + this.ESTABELECIMENTO,
 			estabelecimento,
