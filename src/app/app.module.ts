@@ -16,6 +16,7 @@ import { EstabelecimentoProvider } from '../providers/estabelecimento/estabeleci
 import { EstabelecimentoDetalhePageModule } from '../pages/estabelecimento-detalhe/estabelecimento-detalhe.module';
 import { ImagePicker } from "@ionic-native/image-picker";
 import { Base64 } from "@ionic-native/base64";
+import { FileTransfer } from "@ionic-native/file-transfer";
 @NgModule({
 	declarations: [
 		MyApp,
@@ -46,7 +47,8 @@ import { Base64 } from "@ionic-native/base64";
 		CidadeProvider,
 		EstabelecimentoProvider,
 		ImagePicker,
-		Base64
+		Base64,
+		FileTransfer
 	]
 })
 export class AppModule { }

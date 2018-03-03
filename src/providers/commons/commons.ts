@@ -28,6 +28,21 @@ export class CommonsProvider {
 		return headers;
 	}
 
+	getMultipartHeaders(){
+		let headers: any = {
+			headers: {
+				"Content-Type": "multipart/form-data"
+			}
+		}
+
+		let authorization = window.localStorage.getItem(this.getAuthorizationStorageKey());
+
+		if (authorization){
+			headers.headers.Authorization = window.localStorage.getItem(this.getAuthorizationStorageKey());
+		}
+		return headers;
+	}
+
 	getCommonHeaders() {
 
 		let headers: any = {

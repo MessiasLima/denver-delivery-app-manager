@@ -111,14 +111,12 @@ export class EstabelecimentoNewComponent {
 
     private saveImage(estabelecimento: Estabelecimento) {
         if (this.imageURI) {
-            this.estabelecimentoService.saveImage(this.imageURI, estabelecimento.id).subscribe(
-                (data) => {
-                    this.showMessage("Estabelecimento salvo");
+            this.estabelecimentoService.saveImage(this.imageURI, estabelecimento.id)
+                .then((data) => {
                     console.log(data);
                 }, (err) => {
                     console.log(err);
-                }
-            );
+                });
         } else {
             this.showMessage("Estabelecimento salvo");
         }
