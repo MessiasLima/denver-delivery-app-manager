@@ -112,7 +112,6 @@ export class EstabelecimentosPage {
 	}
 
 	openNewEstabelecimentoModal() {
-		console.log("Teste");
 		let modal = this.modalController.create(EstabelecimentoNewComponent);
 		modal.present();
 	}

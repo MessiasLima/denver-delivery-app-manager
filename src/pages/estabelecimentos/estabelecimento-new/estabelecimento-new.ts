@@ -6,7 +6,7 @@ import { Estabelecimento } from '../../../model/estabelecimento';
 import { CidadeProvider } from '../../../providers/cidade/cidade';
 import { Cidade } from '../../../model/cidade';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { ToastController } from 'ionic-angular';
+import { ToastController, LoadingController, Loading, ViewController } from 'ionic-angular';
 
 
 @Component({
@@ -24,6 +24,8 @@ export class EstabelecimentoNewComponent {
     errorMessage: string = "";
     selectedCidade: Cidade;
     form: FormGroup;
+    errorValidationMessage: string;
+    loader: Loading;
 
     constructor(
         public imagePicker: ImagePicker,
@@ -31,7 +33,9 @@ export class EstabelecimentoNewComponent {
         public estabelecimentoService: EstabelecimentoProvider,
         public cidadeService: CidadeProvider,
         public formBuilder: FormBuilder,
-        public toastController: ToastController
+        public toastController: ToastController,
+        public loadingController: LoadingController,
+        public viewController: ViewController
     ) {
         this.buildFormValidator();
     }
@@ -85,7 +89,7 @@ export class EstabelecimentoNewComponent {
             this.estabelecimento.idCidade = this.form.controls.cidade.value;
             this.saveEstabelecimento(this.estabelecimento);
         } else {
-
+            this.errorValidationMessage = "Por favor, verifique os campos obrigatórios";
         }
     }
 
@@ -99,26 +103,50 @@ export class EstabelecimentoNewComponent {
     }
 
     private saveEstabelecimento(estabelecimento: Estabelecimento) {
+        this.showFullscreenLoading();
         this.estabelecimentoService.saveEstabelecimento(estabelecimento).subscribe(
             (data) => {
                 this.saveImage(this.estabelecimentoService.dataToEstabelecimento(data));
             },
             (err) => {
-                this.showMessage("Ocorreu um erro ao salvar o estabelecimento.");
+                this.processFailed("Ocorreu um erro ao salvar o estabelecimento.");
             }
         );
     }
 
     private saveImage(estabelecimento: Estabelecimento) {
         if (this.imageURI) {
+            this.loader.setContent("Armazenando imagem");
             this.estabelecimentoService.saveImage(this.imageURI, estabelecimento.id)
                 .then((data) => {
-                    console.log(data);
+                    this.processSuccess();
                 }, (err) => {
-                    console.log(err);
+                    this.processFailed("O estabelecimento foi salvo, porem sem imagem. Por favor, adicione uma imagem na tela de edição de estabelecimento");
                 });
         } else {
-            this.showMessage("Estabelecimento salvo");
+            this.processSuccess();
         }
+    }
+
+    private showFullscreenLoading() {
+        this.loader = this.loadingController.create({
+            content: "Salvando dados"
+        });
+        this.loader.present();
+    }
+
+    private hideFullscreenLoading() {
+        this.loader.dismiss();
+    }
+
+    private processFailed(message: string) {
+        this.hideFullscreenLoading();
+        this.showMessage(message);
+    }
+
+    private processSuccess() {
+        this.hideFullscreenLoading();
+        this.showMessage("Estabelecimento salvo");
+        this.viewController.dismiss();
     }
 }

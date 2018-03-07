@@ -13,7 +13,7 @@
     <loading [hidden]="!loading"></loading>
     <error-message (action)="listCidades()" [hidden]="!error" message="{{ errorMessage }}"></error-message>
 
-    <div [hidden]="loading">
+    <div [hidden]="loading || error">
         <form [formGroup]="form">
 
             <ion-item>
@@ -46,6 +46,9 @@
                 Salvar
             </button>
 
+            <br>
+
+            <span [hidden]="!errorValidationMessage" class="error-label" >{{ errorValidationMessage }}</span>
         </form>
     </div>
 
