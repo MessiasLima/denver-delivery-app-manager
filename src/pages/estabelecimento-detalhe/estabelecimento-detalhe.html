@@ -6,33 +6,31 @@
 <ion-content>
 	<img src="{{ getURLImage(estabelecimento.urlImage) }}">
 	<ion-card>
-		<ion-card-header ion-item>
-			{{ estabelecimento.nome }}
-			<ion-badge item-end>{{ estabelecimento.cidade.nome }}</ion-badge>
-		</ion-card-header>
-		<ion-card-content>
-			<p>{{ estabelecimento.descricao }}</p>
-		</ion-card-content>
-
-		<ion-buttons end>
-			<button ion-button icon-left clear small (click)="promptUpdateEstabelecimeto()">
-				<ion-icon name="md-create"></ion-icon>
-				<div>Editar</div>
-			</button>
-		</ion-buttons>
-	</ion-card>
-
-	<ion-card>
 		<ion-card-header>
-			Gerenciamento
+			<h1>{{ estabelecimento.nome }}</h1>
 		</ion-card-header>
-		<ion-card-content>
-			<ion-buttons>
-				<button ion-button outline block icon-left>
-					<ion-icon name="people"></ion-icon>Usuários</button>
-				<button ion-button outline block icon-left>
-					<ion-icon name="list-box"></ion-icon>Cardápio</button>
-			</ion-buttons>
-		</ion-card-content>
+		<ion-list>
+			<button ion-item>
+				<ion-avatar item-start>
+					<img src="./assets/imgs/icon/customer-service-1.png">
+				</ion-avatar>
+				<h2>Informações básicas</h2>
+				<p>Visualize e edite informações do estabelecimento</p>
+			</button>
+			<button ion-item>
+				<ion-avatar item-start>
+					<img src="./assets/imgs/icon/school-material-1.png">
+				</ion-avatar>
+				<h2>Cardápio</h2>
+				<p>Gerencie o cardápio</p>
+			</button>
+			<button ion-item>
+				<ion-avatar item-start>
+					<img src="./assets/imgs/icon/network.png">
+				</ion-avatar>
+				<h2>Usuários</h2>
+				<p>Gerencie quem deve usar o aplicativo</p>
+			</button>
+		</ion-list>
 	</ion-card>
 </ion-content>

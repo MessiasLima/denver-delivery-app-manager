@@ -26,48 +26,4 @@ export class EstabelecimentoDetalhePage {
 	getURLImage(fileName:string){
 		return this.estabelecimentoService.getUrlImage(fileName);
 	}
-
-	promptUpdateEstabelecimeto() {
-		let prompt = this.alertController.create({
-			title: "Alterar estabelecimento",
-			subTitle: "Insira as informações básicas do estabelecimento",
-			inputs: [
-				{
-					label: "Nome",
-					name: "nome",
-					placeholder: "Nome",
-					value: this.estabelecimento.nome
-				},
-				{
-					name: "descricao",
-					placeholder: "Descrição",
-					label: "Descrição",
-					value: this.estabelecimento.descricao
-				},
-			],
-			buttons: [
-				{ text: "Cancelar" },
-				{
-					text: "Salvar",
-					handler: data => {
-						this.estabelecimentoOriginal.nome = data.nome;
-						this.estabelecimentoOriginal.descricao = data.descricao;
-						this.saveEstabelecimento(this.estabelecimentoOriginal);
-					}
-				}
-			]
-		});
-		prompt.present();
-	}
-
-	private saveEstabelecimento(estabelecimento: Estabelecimento) {
-		this.estabelecimentoService.saveEstabelecimento(estabelecimento).subscribe(
-			(data)=>{
-				console.log(data);
-			},
-			(err)=>{
-				console.log(err);
-			}
-		);
-	}
 }
