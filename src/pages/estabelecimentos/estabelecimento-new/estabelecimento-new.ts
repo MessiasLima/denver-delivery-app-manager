@@ -6,7 +6,7 @@ import { Estabelecimento } from '../../../model/estabelecimento';
 import { CidadeProvider } from '../../../providers/cidade/cidade';
 import { Cidade } from '../../../model/cidade';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { ToastController, LoadingController, Loading, ViewController } from 'ionic-angular';
+import { ToastController, LoadingController, Loading, ViewController, Events } from 'ionic-angular';
 
 
 @Component({
@@ -35,7 +35,8 @@ export class EstabelecimentoNewComponent {
         public formBuilder: FormBuilder,
         public toastController: ToastController,
         public loadingController: LoadingController,
-        public viewController: ViewController
+        public viewController: ViewController,
+        public events: Events
     ) {
         this.buildFormValidator();
     }
@@ -121,7 +122,7 @@ export class EstabelecimentoNewComponent {
                 .then((data) => {
                     this.processSuccess();
                 }, (err) => {
-                    this.processFailed("O estabelecimento foi salvo, porem sem imagem. Por favor, adicione uma imagem na tela de edição de estabelecimento");
+                    this.processSuccess("O estabelecimento foi salvo, porem sem imagem. Por favor, adicione uma imagem na tela de edição de estabelecimento");
                 });
         } else {
             this.processSuccess();
@@ -144,9 +145,10 @@ export class EstabelecimentoNewComponent {
         this.showMessage(message);
     }
 
-    private processSuccess() {
+    private processSuccess(message?: string) {
         this.hideFullscreenLoading();
-        this.showMessage("Estabelecimento salvo");
+        this.showMessage(message || "Estabelecimento salvo");
         this.viewController.dismiss();
+        this.events.publish("refresh");
     }
 }
