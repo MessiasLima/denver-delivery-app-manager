@@ -63,6 +63,7 @@ export class EstabelecimentosPage {
 	ionViewWillUnload() {
 		this.events.unsubscribe("logout");
 		this.events.unsubscribe("openSettings");
+		this.events.unsubscribe("refresh");
 	}
 
 	private openSettings() {
@@ -108,7 +109,7 @@ export class EstabelecimentosPage {
 	}
 
 	getUrlImage(fileName: string): string {
-		return this.commonService.getHost() + "/download/" + (fileName || 'default.png');
+		return this.estabelecimentoService.getUrlImage(fileName);
 	}
 
 	goToEstabelecimentoDetalhe(estabelecimento: Estabelecimento) {

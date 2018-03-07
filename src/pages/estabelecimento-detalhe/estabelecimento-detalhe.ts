@@ -23,6 +23,10 @@ export class EstabelecimentoDetalhePage {
 		this.estabelecimentoOriginal = navParams.get("data");
 	}
 
+	getURLImage(fileName:string){
+		return this.estabelecimentoService.getUrlImage(fileName);
+	}
+
 	promptUpdateEstabelecimeto() {
 		let prompt = this.alertController.create({
 			title: "Alterar estabelecimento",
