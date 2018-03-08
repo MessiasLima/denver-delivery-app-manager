@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons>
+            <button ion-button icon-only color="royal" navPop>
+                Voltar
+            </button>
+        </ion-buttons>
+        <ion-title>Informações</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-item>
+            <ion-avatar item-start>
+                <img [src]="getUrlImage(estabelecimento.urlImage)">
+            </ion-avatar>
+            <h2>{{ estabelecimento.nome }}</h2>
+            <p>{{ estabelecimento.cidade.nome }}</p>
+        </ion-item>
+        <ion-item text-wrap>
+            <h2>Identificador</h2>
+            <p>{{ estabelecimento.id }}</p>
+        </ion-item>
+        <ion-item text-wrap>
+            <h2>Status</h2>
+            <p>{{ estabelecimento.status }}</p>
+        </ion-item>
+        <ion-item text-wrap>
+            <h2>Descrição</h2>
+            <p>{{ estabelecimento.descricao }}</p>
+        </ion-item>
+        <ion-item text-wrap>
+            <h2>Localização</h2>
+            <p>Indisponível</p>
+        </ion-item>
+    </ion-card>
+
+    <ion-buttons padding>
+        <button (click)="edit()" ion-button icon-left block navPop>
+            <ion-icon name="md-create"></ion-icon>
+            Editar
+        </button>
+    </ion-buttons>
+
+</ion-content>

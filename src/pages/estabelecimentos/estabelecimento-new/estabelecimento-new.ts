@@ -6,7 +6,7 @@ import { Estabelecimento } from '../../../model/estabelecimento';
 import { CidadeProvider } from '../../../providers/cidade/cidade';
 import { Cidade } from '../../../model/cidade';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { ToastController, LoadingController, Loading, ViewController, Events } from 'ionic-angular';
+import { ToastController, LoadingController, Loading, ViewController, Events, NavParams } from 'ionic-angular';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class EstabelecimentoNewComponent {
     form: FormGroup;
     errorValidationMessage: string;
     loader: Loading;
+    estabelecimentoOriginal: Estabelecimento;
 
     constructor(
         public imagePicker: ImagePicker,
@@ -36,13 +37,19 @@ export class EstabelecimentoNewComponent {
         public toastController: ToastController,
         public loadingController: LoadingController,
         public viewController: ViewController,
-        public events: Events
+        public events: Events,
+        public navParams: NavParams
     ) {
         this.buildFormValidator();
     }
 
     ionViewDidLoad() {
         this.listCidades();
+        let estabelecimento = this.navParams.get("estabelecimento");
+        if (estabelecimento !== undefined) {
+            this.estabelecimento = estabelecimento;
+            this.estabelecimentoOriginal = Object.assign({}, estabelecimento);
+        }
     }
 
     private buildFormValidator() {
@@ -143,6 +150,7 @@ export class EstabelecimentoNewComponent {
     private processFailed(message: string) {
         this.hideFullscreenLoading();
         this.showMessage(message);
+        this.estabelecimento = this.estabelecimentoOriginal;
     }
 
     private processSuccess(message?: string) {
@@ -150,5 +158,15 @@ export class EstabelecimentoNewComponent {
         this.showMessage(message || "Estabelecimento salvo");
         this.viewController.dismiss();
         this.events.publish("refresh");
+    }
+
+    getImageUrl(fileName: string) {
+        return this.estabelecimentoService.getUrlImage(fileName);
+    }
+
+    selectChange(cidadeId: any) {
+        this.estabelecimento.cidade = this.cidades.find(c => {
+            return c.id == cidadeId;
+        });
     }
 }
