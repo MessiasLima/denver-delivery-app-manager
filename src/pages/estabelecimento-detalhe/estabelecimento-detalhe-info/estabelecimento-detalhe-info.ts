@@ -10,7 +10,7 @@ import { EstabelecimentoProvider } from "../../../providers/estabelecimento/esta
 export class EstabelecimentoDetalheInfoComponent {
     estabelecimento: Estabelecimento;
     constructor(
-        private params: NavParams,
+        params: NavParams,
         private events: Events,
         private estabelecimentoService: EstabelecimentoProvider
     ) {

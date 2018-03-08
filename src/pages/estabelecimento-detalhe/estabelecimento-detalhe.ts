@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoProvider } from '../../providers/estabelecimento/estabelecimento';
 import { EstabelecimentoDetalheInfoComponent } from './estabelecimento-detalhe-info/estabelecimento-detalhe-info';
@@ -18,7 +18,6 @@ export class EstabelecimentoDetalhePage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		private alertController: AlertController,
 		private estabelecimentoService: EstabelecimentoProvider,
 		public modalControler: ModalController,
 		private events: Events
