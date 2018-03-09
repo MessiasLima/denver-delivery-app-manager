@@ -6,8 +6,12 @@ import { Usuario } from "../../model/usuario";
 @Component({
     template: `
       <ion-list>
-        <button ion-item [hidden]="!isUsuarioAdmGeral()" (click)="openSettings()">Configurações</button>
-        <button ion-item (click)="logout()">Sair</button>
+            <button ion-item [hidden]="!isUsuarioAdmGeral()" (click)="openSettings()">
+                Configurações
+            </button>
+            <button ion-item (click)="logout()">
+                Sair
+            </button>
       </ion-list>
     `
 })

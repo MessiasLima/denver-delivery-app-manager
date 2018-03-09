@@ -8,8 +8,8 @@
 	<error-message [hidden]="!error" message="Falha ao recuperar as cidades" (action)="listCidades()"></error-message>
 
 	<ion-list [hidden]="loading || error" >
-		<ion-item *ngFor="let cidade of cidades">
-			<ion-icon name="home"></ion-icon>
+		<ion-item icon-left *ngFor="let cidade of cidades">
+			<ion-icon item-start name="home"></ion-icon>
 			{{ cidade.nome }}
 			<button (click)="promptUpdateCidade(cidade)" clear ion-button icon-only item-end>
 				<ion-icon name="md-create"></ion-icon>
