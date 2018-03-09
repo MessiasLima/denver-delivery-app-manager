@@ -1,17 +1,11 @@
-<ion-content padding>
+<ion-content class="form-content" padding>
 	<h1>Denver Delivery</h1>
-	
-	<ion-item>
-		<ion-label color="primary" floating>Login</ion-label>
-		<ion-input [(ngModel)] = "dadosLogin.login"></ion-input>
+	<ion-item class="login-input">
+		<ion-input placeholder="Login" [(ngModel)] = "dadosLogin.login"></ion-input>
 	</ion-item>
-
-	<ion-item>
-		<ion-label color="primary" floating>Senha</ion-label>
-		<ion-input type="password" [(ngModel)] = "dadosLogin.senha"></ion-input>
+	<ion-item class="login-input">
+		<ion-input placeholder="Senha" type="password" [(ngModel)] = "dadosLogin.senha"></ion-input>
 	</ion-item>
-
 	<br/>
-
 	<button ion-button block (click)="login(dadosLogin)">Entrar</button>
 </ion-content>

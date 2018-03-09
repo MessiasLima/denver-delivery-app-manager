@@ -26,8 +26,8 @@
    width: 97%;
    margin-left: 1.5%;
    margin-right: 1.5%;
-   margin-bottom: 5px;
-   margin-top: 5px;
+   margin-bottom: 9px;
+   margin-top: 7px;
 }
 
 .error-label{
@@ -36,4 +36,15 @@
 
 .content {
     background: linear-gradient(135deg, rgba(176,190,197,1) 0%, rgba(236,239,241,1) 100%);
+}
+
+.form-content {
+    ion-item {
+        border-radius: 10px !important;
+        padding-left: 15px !important;
+        margin-bottom: 10px;
+        border: 1px solid #ffffff;
+        border-bottom: 0px !important;
+        box-shadow: none !important;
+    }
 }

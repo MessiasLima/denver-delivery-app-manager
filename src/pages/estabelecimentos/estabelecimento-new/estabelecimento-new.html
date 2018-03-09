@@ -15,7 +15,7 @@
     <error-message (action)="listCidades()" [hidden]="!error" message="{{ errorMessage }}"></error-message>
 
     <div [hidden]="loading || error">
-        <form [formGroup]="form">
+        <form class="form-content" [formGroup]="form">
 
             <ion-item>
                 <ion-label color="primary" stacked>Nome</ion-label>
@@ -31,7 +31,7 @@
 
             <ion-item>
                 <ion-label color="primary" stacked>Cidade</ion-label>
-                <ion-select (ionChange)="selectChange($event)" [(ngModel)]="estabelecimento.idCidade" name="cidade" formControlName="cidade">
+                <ion-select placeholder="Selecione uma cidade" (ionChange)="selectChange($event)" [(ngModel)]="estabelecimento.idCidade" name="cidade" formControlName="cidade">
                     <div *ngFor="let c of cidades">
                         <ion-option value="{{ c.id }}">{{ c.nome }}</ion-option>
                     </div>
