@@ -5,9 +5,9 @@
 </ion-header>
 <ion-content>
 	<ion-list>
-		<button (click)="goToCidades()" ion-item>
-			<ion-icon name="home"></ion-icon> 
-			Cidades 
+		<button *ngFor="let opt of options" (click)="goTo(opt.page)" icon-left ion-item>
+			<ion-icon name="home" item-start></ion-icon>
+			{{ opt.name }}
 		</button>
 	</ion-list>
 </ion-content>

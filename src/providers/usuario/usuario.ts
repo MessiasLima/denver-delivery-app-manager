@@ -17,6 +17,21 @@ export class UsuarioProvider {
 		);
 	}
 
+	dataToUsuarioArray(data: any): Usuario[] {
+		let usuarios: Usuario[] = [];
+		data.forEach(element => {
+			usuarios.push({
+				email: element.email,
+				id: element.id,
+				login: element.login,
+				nome: element.nome,
+				tipo: element.tipo,
+				token: element.token
+			});
+		});
+		return usuarios;
+	}
+
 	private encodeUrlDadosLogin(dadosLogin: any): string {
 		return "login=" + dadosLogin.login + "&senha=" + dadosLogin.senha;
 	}
@@ -38,7 +53,14 @@ export class UsuarioProvider {
 		return window.localStorage.getItem(this.commons.getAuthorizationStorageKey());
 	}
 
-	deleteAuthorization(){
+	deleteAuthorization() {
 		window.localStorage.removeItem(this.commons.getAuthorizationStorageKey());
+	}
+
+	listAdms() {
+		return this.http.get(
+			this.commons.getHost() + "/usuario/adm-sistema",
+			this.commons.getCommonHeaders()
+		);
 	}
 }

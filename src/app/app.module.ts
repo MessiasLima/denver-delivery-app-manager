@@ -11,6 +11,7 @@ import { CommonsProvider } from '../providers/commons/commons';
 import { HttpClientModule } from '@angular/common/http';
 import { EstabelecimentosPageModule } from '../pages/estabelecimentos/estabelecimentos.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
+import { UsuariosAdmPageModule } from '../pages/usuarios-adm/usuarios-adm.module';
 import { CidadeProvider } from '../providers/cidade/cidade';
 import { EstabelecimentoProvider } from '../providers/estabelecimento/estabelecimento';
 import { EstabelecimentoDetalhePageModule } from '../pages/estabelecimento-detalhe/estabelecimento-detalhe.module';
@@ -31,7 +32,8 @@ import { FileTransfer } from "@ionic-native/file-transfer";
 		HttpClientModule,
 		EstabelecimentosPageModule,
 		SettingsPageModule,
-		EstabelecimentoDetalhePageModule
+		EstabelecimentoDetalhePageModule,
+		UsuariosAdmPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
