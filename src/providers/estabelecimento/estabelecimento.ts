@@ -67,11 +67,18 @@ export class EstabelecimentoProvider {
 		return estabelecimento;
 	}
 
+	private getFileExtensions(imageUri :string): string{
+		let array = imageUri.split(".");
+		return array[array.length - 1];
+	}
+
 	saveImage(imageURI: string, idEstabelecimento: number) {
+		let extension = this.getFileExtensions(imageURI);
+		debugger;
 		let fileTransfer = this.fileTransfer.create();
 		let options : FileUploadOptions ={
 			fileKey: "file",
-			fileName: "image.png",
+			fileName: "image." + extension,
 			headers:{
 				"ContentType": "multipart/form-data",
 				"Authorization": this.usuarioService.getAuthorization()

@@ -15,6 +15,7 @@ import { ToastController, LoadingController, Loading, ViewController, Events, Na
 })
 export class EstabelecimentoNewComponent {
 
+    title: string = "Novo estabelecimento";
     loading: boolean = false;
     imageURI: string;
     imageBase64: string;
@@ -49,6 +50,7 @@ export class EstabelecimentoNewComponent {
         if (estabelecimento !== undefined) {
             this.estabelecimento = estabelecimento;
             this.estabelecimentoOriginal = Object.assign({}, estabelecimento);
+            this.title = "Editar estabelecimento";
         }
     }
 
