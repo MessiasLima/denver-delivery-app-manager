@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Usuario } from '../../model/usuario';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { EventType } from '../../model/events';
+import { Estabelecimento } from '../../model/estabelecimento';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,8 @@ export class UsuarioNewPage {
 	tipos: any;
 	idEstabelecimento: number;
 	loader: Loading;
+	estabelecimento: Estabelecimento;
+	isFromEstabelecimento: boolean;
 
 	constructor(
 		public navCtrl: NavController,
@@ -47,6 +50,12 @@ export class UsuarioNewPage {
 			this.usuarioOriginal = Object.assign({}, usuario);
 			this.usuario = usuario;
 			this.isEditing = true;
+		}
+
+		let estabelecimento = this.navParams.get("estabelecimento");
+		if(estabelecimento !== undefined){
+			this.isFromEstabelecimento = true;
+			this.estabelecimento = estabelecimento;
 		}
 	}
 

@@ -19,7 +19,7 @@ export class UsuariosAdmPage {
 	error: boolean;
 	isFromEstabelecimento: boolean = false;
 	estabelecimento: Estabelecimento;
-	title : string = "Administradores";
+	title: string = "Administradores";
 
 	constructor(
 		public navCtrl: NavController,
@@ -86,7 +86,11 @@ export class UsuariosAdmPage {
 	}
 
 	openNewUsuario() {
-		this.navCtrl.push(UsuarioNewPage);
+		if (this.isFromEstabelecimento) {
+			this.navCtrl.push(UsuarioNewPage, { estabelecimento: this.estabelecimento });
+		} else {
+			this.navCtrl.push(UsuarioNewPage);
+		}
 	}
 
 	editUsuario(usuario: Usuario) {
