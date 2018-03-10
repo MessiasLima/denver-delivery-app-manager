@@ -74,7 +74,6 @@ export class EstabelecimentoProvider {
 
 	saveImage(imageURI: string, idEstabelecimento: number) {
 		let extension = this.getFileExtensions(imageURI);
-		debugger;
 		let fileTransfer = this.fileTransfer.create();
 		let options : FileUploadOptions ={
 			fileKey: "file",
