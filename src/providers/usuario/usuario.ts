@@ -26,6 +26,7 @@ export class UsuarioProvider {
 				login: element.login,
 				nome: element.nome,
 				tipo: element.tipo,
+				senha: element.senha,
 				token: element.token
 			});
 		});
@@ -61,6 +62,14 @@ export class UsuarioProvider {
 		return this.http.get(
 			this.commons.getHost() + "/usuario/adm-sistema",
 			this.commons.getCommonHeaders()
+		);
+	}
+
+	save(usuario: Usuario){
+		return this.http.post(
+			this.commons.getHost() + "/usuario",
+			usuario,
+			this.commons.getPayloadHeaders()
 		);
 	}
 }

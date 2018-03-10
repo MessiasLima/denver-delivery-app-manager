@@ -1,10 +1,16 @@
 <ion-header>
 	<ion-navbar color="primary">
 		<ion-title>Administradores</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-left icon-only (click)="openNewUsuario()">
+				<ion-icon icon-start name="add"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 <ion-content>
 	<loading [hidden]="!loading"></loading>
+	<error-message [hidden]="!error" message="Não foi possivel carregar os usuários" (action)="listAdm()" ></error-message>
 	<div [hidden]="loading">
 		<ion-card *ngFor="let usuario of usuarios">
 			<ion-list>

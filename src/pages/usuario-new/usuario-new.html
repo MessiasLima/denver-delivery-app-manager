@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title>{{ title }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<form class="form-content" [formGroup]="form">
+
+		<ion-item>
+			<ion-label color="{{ (form.controls.nome.touched && form.controls.nome.errors)? 'danger' : 'primary' }}" stacked>Nome</ion-label>
+			<ion-input [(ngModel)]="usuario.nome" name="nome" formControlName="nome" type="text" placeholder="Nome do usuário"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="{{ (form.controls.login.touched && form.controls.login.errors)? 'danger' : 'primary' }}" stacked>Login</ion-label>
+			<ion-input [(ngModel)]="usuario.login" name="login" formControlName="login" type="text" placeholder="Login"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="{{ (form.controls.senha.touched && form.controls.senha.errors)? 'danger' : 'primary' }}" stacked>Senha</ion-label>
+			<ion-input [(ngModel)]="usuario.senha" name="senha" formControlName="senha" type="password" placeholder="Senha"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="{{ differentPasswords ? 'danger' : 'primary' }}" stacked>Redigite a senha</ion-label>
+			<ion-input (change)="passwordChange($event)" [(ngModel)]="senha2" formControlName="retype" type="password" placeholder="Redigite a senha"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="{{ (form.controls.email.touched && form.controls.email.errors)? 'danger' : 'primary' }}" stacked>Email</ion-label>
+			<ion-input [(ngModel)]="usuario.email"  formControlName="email" type="email" placeholder="Email"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary" stacked>Tipo</ion-label>
+			<ion-select [(ngModel)]="usuario.tipo" placeholder="Selecione o tipo"  formControlName="tipo">
+				<div *ngFor="let t of tipos">
+					<ion-option value="{{ t.value }}">{{ t.name }}</ion-option>
+				</div>
+			</ion-select>
+		</ion-item>
+
+		<button (click)="save(usuario)" ion-button block>
+			Salvar
+		</button>
+	</form>
+</ion-content>

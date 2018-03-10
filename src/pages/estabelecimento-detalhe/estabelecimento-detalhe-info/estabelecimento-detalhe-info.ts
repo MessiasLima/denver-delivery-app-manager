@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavParams, Events } from "ionic-angular";
+import { NavParams, Events, ViewController } from "ionic-angular";
 import { Estabelecimento } from "../../../model/estabelecimento";
 import { EstabelecimentoProvider } from "../../../providers/estabelecimento/estabelecimento";
 
@@ -10,6 +10,7 @@ import { EstabelecimentoProvider } from "../../../providers/estabelecimento/esta
 export class EstabelecimentoDetalheInfoComponent {
     estabelecimento: Estabelecimento;
     constructor(
+        private viewController: ViewController,
         params: NavParams,
         private events: Events,
         private estabelecimentoService: EstabelecimentoProvider
@@ -23,5 +24,6 @@ export class EstabelecimentoDetalheInfoComponent {
 
     edit(){
         this.events.publish("edit");
+        this.viewController.dismiss();
     }
 }

@@ -10,4 +10,5 @@ export class Usuario {
     nome: string;
     tipo: string;
     token: string;
+    senha: string;
 }
