@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ToastController, AlertController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Usuario } from '../../model/usuario';
 import { EventType } from "../../model/events";
@@ -21,7 +21,8 @@ export class UsuariosAdmPage {
 		public navParams: NavParams,
 		public usuarioService: UsuarioProvider,
 		public events: Events,
-		public toastController: ToastController
+		public toastController: ToastController,
+		public alertController: AlertController
 	) { }
 
 	ionViewDidLoad() {
@@ -71,6 +72,23 @@ export class UsuariosAdmPage {
 			message: message,
 			duration: 3000
 		}).present();
+	}
+
+	promptDelete(idUsuario: number){
+		let prompt = this.alertController.create({
+			title: "Deletar usuário",
+			message: "Tem certeza que deseja deletar esse usuário? Essa operação não poderá ser desfeita",
+			buttons: [
+				{ text: "Cancelar" },
+				{
+					text: "Deletar",
+					handler: data => {
+						this.delete(idUsuario);
+					}
+				}
+			]
+		});
+		prompt.present();
 	}
 
 	private delete(idUsuario: number) {
