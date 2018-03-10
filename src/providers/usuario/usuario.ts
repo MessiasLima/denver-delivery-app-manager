@@ -65,7 +65,14 @@ export class UsuarioProvider {
 		);
 	}
 
-	save(usuario: Usuario){
+	listByEstabelecimento(idEstabelecimento: number) {
+		return this.http.get(
+			this.commons.getHost() + "/usuario/estabelecimento/" + idEstabelecimento,
+			this.commons.getCommonHeaders()
+		);
+	}
+
+	save(usuario: Usuario) {
 		return this.http.post(
 			this.commons.getHost() + "/usuario",
 			usuario,
@@ -73,9 +80,9 @@ export class UsuarioProvider {
 		);
 	}
 
-	delete(idUsuario: number){
+	delete(idUsuario: number) {
 		return this.http.delete(
-			this.commons.getHost() + "/usuario/"+ idUsuario,
+			this.commons.getHost() + "/usuario/" + idUsuario,
 			this.commons.getCommonHeaders()
 		);
 	}

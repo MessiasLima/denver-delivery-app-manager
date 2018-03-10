@@ -4,6 +4,8 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Usuario } from '../../model/usuario';
 import { EventType } from "../../model/events";
 import { UsuarioNewPage } from '../usuario-new/usuario-new';
+import { Observable } from 'rxjs/Observable';
+import { Estabelecimento } from '../../model/estabelecimento';
 
 @IonicPage()
 @Component({
@@ -15,6 +17,9 @@ export class UsuariosAdmPage {
 	loading: boolean = false;
 	usuarios: Usuario[];
 	error: boolean;
+	isFromEstabelecimento: boolean = false;
+	estabelecimento: Estabelecimento;
+	title : string = "Administradores";
 
 	constructor(
 		public navCtrl: NavController,
@@ -23,7 +28,18 @@ export class UsuariosAdmPage {
 		public events: Events,
 		public toastController: ToastController,
 		public alertController: AlertController
-	) { }
+	) {
+		this.retriveNavData();
+	}
+
+	private retriveNavData() {
+		let estabelecimento = this.navParams.get("estabelecimento");
+		if (estabelecimento !== undefined) {
+			this.title = "Usuários";
+			this.isFromEstabelecimento = true;
+			this.estabelecimento = estabelecimento;
+		}
+	}
 
 	ionViewDidLoad() {
 		this.listAdm();
@@ -47,9 +63,19 @@ export class UsuariosAdmPage {
 	listAdm() {
 		this.loading = true;
 		this.error = false;
-		this.usuarioService.listAdms().subscribe(
+
+		let observable;
+		if (this.isFromEstabelecimento) {
+			observable = this.usuarioService.listByEstabelecimento(this.estabelecimento.id);
+		} else {
+			observable = this.usuarioService.listAdms();
+		}
+
+		observable.subscribe(
 			(data) => {
-				this.usuarios = this.usuarioService.dataToUsuarioArray(data);
+				if (data !== null) {
+					this.usuarios = this.usuarioService.dataToUsuarioArray(data);
+				}
 				this.loading = false;
 			},
 			(err) => {
@@ -74,7 +100,7 @@ export class UsuariosAdmPage {
 		}).present();
 	}
 
-	promptDelete(idUsuario: number){
+	promptDelete(idUsuario: number) {
 		let prompt = this.alertController.create({
 			title: "Deletar usuário",
 			message: "Tem certeza que deseja deletar esse usuário? Essa operação não poderá ser desfeita",

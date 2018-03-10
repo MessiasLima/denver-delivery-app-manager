@@ -4,6 +4,7 @@ import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoProvider } from '../../providers/estabelecimento/estabelecimento';
 import { EstabelecimentoDetalheInfoComponent } from './estabelecimento-detalhe-info/estabelecimento-detalhe-info';
 import { EstabelecimentoNewComponent } from '../estabelecimentos/estabelecimento-new/estabelecimento-new';
+import { UsuariosAdmPage } from '../usuarios-adm/usuarios-adm';
 
 @IonicPage()
 @Component({
@@ -50,5 +51,9 @@ export class EstabelecimentoDetalhePage {
 			estabelecimento: this.estabelecimento
 		});
 		modal.present();
+	}
+
+	openUsersManager() {
+		this.navCtrl.push(UsuariosAdmPage, { estabelecimento: this.estabelecimento });
 	}
 }
