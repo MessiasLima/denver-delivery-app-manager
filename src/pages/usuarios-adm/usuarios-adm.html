@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content>
 	<loading [hidden]="!loading"></loading>
-	<error-message [hidden]="!error" message="Não foi possivel carregar os usuários" (action)="listAdm()" ></error-message>
+	<error-message [hidden]="!error" message="Não foi possivel carregar os usuários" (action)="listAdm()"></error-message>
 	<div [hidden]="loading">
 		<ion-card *ngFor="let usuario of usuarios">
 			<ion-list>
@@ -23,14 +23,22 @@
 				</ion-item>
 			</ion-list>
 			<ion-buttons end>
+
+				<button (click)="delete(usuario.id)" color="danger" ion-button icon-left clear small>
+					<ion-icon name="trash" item-start></ion-icon>
+					<div>Excluir</div>
+				</button>
+
 				<button ion-button icon-left clear small>
-					<ion-icon name="lock"></ion-icon>
+					<ion-icon name="lock" item-start></ion-icon>
 					<div>Mudar senha</div>
 				</button>
-				<button ion-button icon-left clear small>
-					<ion-icon name="md-create"></ion-icon>
+
+				<button (click)="editUsuario(usuario)" ion-button icon-left clear small>
+					<ion-icon name="md-create" item-start></ion-icon>
 					<div>Editar</div>
 				</button>
+
 			</ion-buttons>
 		</ion-card>
 	</div>

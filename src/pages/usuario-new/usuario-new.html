@@ -18,14 +18,14 @@
 			<ion-input [(ngModel)]="usuario.login" name="login" formControlName="login" type="text" placeholder="Login"></ion-input>
 		</ion-item>
 
-		<ion-item>
+		<ion-item [hidden]="isEditing">
 			<ion-label color="{{ (form.controls.senha.touched && form.controls.senha.errors)? 'danger' : 'primary' }}" stacked>Senha</ion-label>
 			<ion-input [(ngModel)]="usuario.senha" name="senha" formControlName="senha" type="password" placeholder="Senha"></ion-input>
 		</ion-item>
 
-		<ion-item>
+		<ion-item [hidden]="isEditing">
 			<ion-label color="{{ differentPasswords ? 'danger' : 'primary' }}" stacked>Redigite a senha</ion-label>
-			<ion-input (change)="passwordChange($event)" [(ngModel)]="senha2" formControlName="retype" type="password" placeholder="Redigite a senha"></ion-input>
+			<ion-input [ngModelOptions]="{standalone: true}" (change)="passwordChange($event)" [(ngModel)]="senha2" type="password" placeholder="Redigite a senha"></ion-input>
 		</ion-item>
 
 		<ion-item>

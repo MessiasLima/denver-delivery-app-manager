@@ -12,9 +12,11 @@ import { EventType } from '../../model/events';
 })
 export class UsuarioNewPage {
 
+	isEditing: boolean = false;
 	title: string = "Novo usuário";
 	form: FormGroup;
 	usuario: Usuario = new Usuario();
+	usuarioOriginal: Usuario;
 	senha2: string;
 	differentPasswords: boolean = false;
 	tipos: any;
@@ -29,8 +31,23 @@ export class UsuarioNewPage {
 		public loadingController: LoadingController,
 		public events: Events
 	) {
+		this.retrieveNavData();
+		this.configureTitle();
 		this.buildFormValidator();
 		this.configureTipo();
+	}
+
+	private configureTitle(){
+		this.title = this.isEditing ? "Editar usuário" : "Novo usuário"
+	}
+
+	private retrieveNavData(){
+		let usuario = this.navParams.get("usuario");
+		if(usuario !== undefined){
+			this.usuarioOriginal = Object.assign({}, usuario);
+			this.usuario = usuario;
+			this.isEditing = true;
+		}
 	}
 
 	private configureTipo() {
@@ -46,10 +63,9 @@ export class UsuarioNewPage {
 
 	private buildFormValidator() {
 		this.form = new FormGroup({
-			nome: new FormControl(this.usuario.nome, Validators.required),
+			nome: new FormControl(this.usuario.nome, [Validators.required, Validators.pattern("[A-Za-z\\ ]{1,500}")]),
 			login: new FormControl(this.usuario.login, [Validators.required, Validators.pattern("[a-z0-9]{1,50}")]),
 			senha: new FormControl(this.usuario.senha, [Validators.required, Validators.pattern("[A-Za-z0-9]{1,50}")]),
-			retype: new FormControl(this.usuario.senha, [Validators.required, Validators.pattern("[A-Za-z0-9]{1,50}")]),
 			email: new FormControl(this.usuario.email, [Validators.email]),
 			tipo: new FormControl(this.usuario.tipo, Validators.required)
 		});
@@ -61,7 +77,11 @@ export class UsuarioNewPage {
 	}
 
 	private passwordAreEquals(password: string, retype: string): boolean {
-		return password === retype;
+		if(this.isEditing){
+			return true;
+		}else{
+			return password === retype;
+		}
 	}
 
 	save(usuario: Usuario) {
@@ -95,6 +115,7 @@ export class UsuarioNewPage {
 	private saveFailureCallback(err: any) {
 		this.hideLoading();
 		this.showToast("Ocorreu um erro ao salvar usuário");
+		this.usuario = Object.assign({}, this.usuarioOriginal);
 	}
 
 	private showToast(message: string) {

@@ -6,7 +6,7 @@
 <ion-content>
 	<ion-list>
 		<button *ngFor="let opt of options" (click)="goTo(opt.page)" icon-left ion-item>
-			<ion-icon name="home" item-start></ion-icon>
+			<ion-icon name="{{ opt.icon }}" item-start></ion-icon>
 			{{ opt.name }}
 		</button>
 	</ion-list>

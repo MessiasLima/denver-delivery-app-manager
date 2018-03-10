@@ -72,4 +72,11 @@ export class UsuarioProvider {
 			this.commons.getPayloadHeaders()
 		);
 	}
+
+	delete(idUsuario: number){
+		return this.http.delete(
+			this.commons.getHost() + "/usuario/"+ idUsuario,
+			this.commons.getCommonHeaders()
+		);
+	}
 }
