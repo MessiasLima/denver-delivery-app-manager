@@ -40,20 +40,20 @@ export class UsuarioNewPage {
 		this.configureTipo();
 	}
 
-	private configureTitle(){
+	private configureTitle() {
 		this.title = this.isEditing ? "Editar usuário" : "Novo usuário"
 	}
 
-	private retrieveNavData(){
+	private retrieveNavData() {
 		let usuario = this.navParams.get("usuario");
-		if(usuario !== undefined){
+		if (usuario !== undefined) {
 			this.usuarioOriginal = Object.assign({}, usuario);
 			this.usuario = usuario;
 			this.isEditing = true;
 		}
 
 		let estabelecimento = this.navParams.get("estabelecimento");
-		if(estabelecimento !== undefined){
+		if (estabelecimento !== undefined) {
 			this.isFromEstabelecimento = true;
 			this.estabelecimento = estabelecimento;
 		}
@@ -61,8 +61,11 @@ export class UsuarioNewPage {
 
 	private configureTipo() {
 		let usuario = this.usuarioService.getUsuario();
-		if (this.idEstabelecimento) {
-
+		if (this.isFromEstabelecimento) {
+			this.tipos = [
+				{ name: "Funcinário", value: Usuario.TIPO_FUNCIONARIO },
+				{ name: "Gerente do estabelecimento", value: Usuario.TIPO_ADM_ESTABELECIMENTO }
+			];
 		} else {
 			this.tipos = [
 				{ name: "Administrador de sistema", value: Usuario.TIPO_ADM_SISTEMA }
@@ -72,7 +75,7 @@ export class UsuarioNewPage {
 
 	private buildFormValidator() {
 		this.form = new FormGroup({
-			nome: new FormControl(this.usuario.nome, [Validators.required, Validators.pattern("[A-Za-z\\ ]{1,500}")]),
+			nome: new FormControl(this.usuario.nome, [Validators.required, Validators.pattern("[A-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑa-z\\ ]{1,500}")]),
 			login: new FormControl(this.usuario.login, [Validators.required, Validators.pattern("[a-z0-9]{1,50}")]),
 			senha: new FormControl(this.usuario.senha, [Validators.required, Validators.pattern("[A-Za-z0-9]{1,50}")]),
 			email: new FormControl(this.usuario.email, [Validators.email]),
@@ -86,14 +89,15 @@ export class UsuarioNewPage {
 	}
 
 	private passwordAreEquals(password: string, retype: string): boolean {
-		if(this.isEditing){
+		if (this.isEditing) {
 			return true;
-		}else{
+		} else {
 			return password === retype;
 		}
 	}
 
 	save(usuario: Usuario) {
+		debugger;
 		if (this.form.valid) {
 			if (this.passwordAreEquals(usuario.senha, this.senha2)) {
 				this.showLoading();
@@ -108,7 +112,14 @@ export class UsuarioNewPage {
 	}
 
 	private saveUsuario(usuario: Usuario) {
-		this.usuarioService.save(usuario).subscribe((data) => {
+		let observable;
+		if (this.isFromEstabelecimento) {
+			observable = this.usuarioService.saveUsuarioEstabelecimento(usuario, this.estabelecimento.id);
+		} else {
+			observable = this.usuarioService.save(usuario);
+		}
+
+		observable.subscribe((data) => {
 			this.saveSuccessCallback(data);
 		}, (err) => {
 			this.saveFailureCallback(err);

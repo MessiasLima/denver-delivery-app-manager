@@ -6,12 +6,14 @@ import { Usuario } from '../../model/usuario';
 @Injectable()
 export class UsuarioProvider {
 
+	private ENDPOINT_USUARIO_LOGIN = "/usuario/login";
+
 	constructor(public http: HttpClient, public commons: CommonsProvider) { }
 
 	login(dadosLogin: any) {
 		let data = this.encodeUrlDadosLogin(dadosLogin);
 		return this.http.post(
-			this.commons.getHost() + "/usuario/login",
+			this.commons.getHost() + this.ENDPOINT_USUARIO_LOGIN,
 			data,
 			this.commons.getCommonHeaders()
 		);
@@ -75,6 +77,14 @@ export class UsuarioProvider {
 	save(usuario: Usuario) {
 		return this.http.post(
 			this.commons.getHost() + "/usuario",
+			usuario,
+			this.commons.getPayloadHeaders()
+		);
+	}
+
+	saveUsuarioEstabelecimento(usuario: Usuario, idEstabelecimento: number) {
+		return this.http.post(
+			this.commons.getHost() + "/usuario/estabelecimento/" + idEstabelecimento,
 			usuario,
 			this.commons.getPayloadHeaders()
 		);

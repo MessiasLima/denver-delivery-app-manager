@@ -94,7 +94,10 @@ export class UsuariosAdmPage {
 	}
 
 	editUsuario(usuario: Usuario) {
-		this.navCtrl.push(UsuarioNewPage, { usuario: usuario });
+		this.navCtrl.push(UsuarioNewPage, { 
+			usuario: usuario , 
+			estabelecimento: this.estabelecimento 
+		});
 	}
 
 	private showToast(message: string) {
