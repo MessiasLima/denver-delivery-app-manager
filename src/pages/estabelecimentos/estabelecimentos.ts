@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, Events, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Events, ModalController, AlertController } from 'ionic-angular';
 import { EstabelecimentosMenu } from './estabelecimentos.menu';
 import { HomePage } from '../home/home';
 import { SettingsPage } from '../settings/settings';
@@ -29,7 +29,8 @@ export class EstabelecimentosPage {
 		public usuarioService: UsuarioProvider,
 		private estabelecimentoService: EstabelecimentoProvider,
 		public modalController: ModalController,
-		public commonService: CommonsProvider
+		public commonService: CommonsProvider,
+		private alertController: AlertController
 	) {
 	}
 
@@ -55,7 +56,7 @@ export class EstabelecimentosPage {
 			this.openSettings();
 		});
 
-		this.events.subscribe("refresh",()=>{
+		this.events.subscribe("refresh", () => {
 			this.listEstabelecimentos(undefined);
 		});
 	}
@@ -71,8 +72,21 @@ export class EstabelecimentosPage {
 	}
 
 	private logout() {
-		this.usuarioService.deleteAuthorization();
-		this.navCtrl.setRoot(HomePage);
+		let prompt = this.alertController.create({
+			title: "Sair do aplicativo",
+			message: "Tem certeza que deseja sair do aplicativo?",
+			buttons: [
+				{ text: "Cancelar" },
+				{
+					text: "Sair",
+					handler: () => {
+						this.usuarioService.deleteAuthorization();
+						this.navCtrl.setRoot(HomePage);
+					}
+				}
+			]
+		});
+		prompt.present();
 	}
 
 	showMenu(event) {
