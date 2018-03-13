@@ -97,7 +97,6 @@ export class UsuarioNewPage {
 	}
 
 	save(usuario: Usuario) {
-		debugger;
 		if (this.form.valid) {
 			if (this.passwordAreEquals(usuario.senha, this.senha2)) {
 				this.showLoading();

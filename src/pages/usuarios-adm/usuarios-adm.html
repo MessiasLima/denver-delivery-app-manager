@@ -19,12 +19,13 @@
 						<img src="./assets/imgs/icon/boss-1.png">
 					</ion-avatar>
 					<h2>{{ usuario.nome }}</h2>
+					<ion-badge *ngIf="authenticatedUser.id == usuario.id" item-end>Você</ion-badge>
 					<p>{{ usuario.login }}</p>
 				</ion-item>
 			</ion-list>
 			<ion-buttons end>
 
-				<button (click)="promptDelete(usuario.id)" color="danger" ion-button icon-left clear small>
+				<button [hidden]="authenticatedUser.id == usuario.id" (click)="promptDelete(usuario.id)" color="danger" ion-button icon-left clear small>
 					<ion-icon name="trash" item-start></ion-icon>
 					<div>Excluir</div>
 				</button>

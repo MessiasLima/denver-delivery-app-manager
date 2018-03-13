@@ -20,6 +20,7 @@ export class UsuariosAdmPage {
 	isFromEstabelecimento: boolean = false;
 	estabelecimento: Estabelecimento;
 	title: string = "Administradores";
+	authenticatedUser: Usuario;
 
 	constructor(
 		public navCtrl: NavController,
@@ -30,6 +31,7 @@ export class UsuariosAdmPage {
 		public alertController: AlertController
 	) {
 		this.retriveNavData();
+		this.authenticatedUser = usuarioService.getUsuario();
 	}
 
 	private retriveNavData() {

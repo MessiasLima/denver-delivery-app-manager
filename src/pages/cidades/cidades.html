@@ -20,7 +20,7 @@
 		</ion-item>
 	</ion-list>
 
-	<ion-fab bottom right>
+	<ion-fab [hidden]="loading || error" bottom right>
 		<button ion-fab (click)="promptSaveCidade()">
 			<ion-icon name="add"></ion-icon>
 		</button>
