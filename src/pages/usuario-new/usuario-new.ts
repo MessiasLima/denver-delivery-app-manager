@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Label, LoadingController, Loading, Events } from 'ionic-angular';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, Loading, Events } from 'ionic-angular';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from '../../model/usuario';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { EventType } from '../../model/events';
@@ -60,7 +60,6 @@ export class UsuarioNewPage {
 	}
 
 	private configureTipo() {
-		let usuario = this.usuarioService.getUsuario();
 		if (this.isFromEstabelecimento) {
 			this.tipos = [
 				{ name: "Funcinário", value: Usuario.TIPO_FUNCIONARIO },

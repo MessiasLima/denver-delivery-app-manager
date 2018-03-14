@@ -4,7 +4,6 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Usuario } from '../../model/usuario';
 import { EventType } from "../../model/events";
 import { UsuarioNewPage } from '../usuario-new/usuario-new';
-import { Observable } from 'rxjs/Observable';
 import { Estabelecimento } from '../../model/estabelecimento';
 
 @IonicPage()
