@@ -19,6 +19,8 @@ import { EstabelecimentoDetalhePageModule } from '../pages/estabelecimento-detal
 import { ImagePicker } from "@ionic-native/image-picker";
 import { Base64 } from "@ionic-native/base64";
 import { FileTransfer } from "@ionic-native/file-transfer";
+import { CardapioPageModule } from "../pages/cardapio/cardapio.module";
+
 @NgModule({
 	declarations: [
 		MyApp,
@@ -35,7 +37,8 @@ import { FileTransfer } from "@ionic-native/file-transfer";
 		SettingsPageModule,
 		EstabelecimentoDetalhePageModule,
 		UsuariosAdmPageModule,
-		UsuarioNewPageModule
+		UsuarioNewPageModule,
+		CardapioPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
