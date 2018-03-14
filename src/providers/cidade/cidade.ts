@@ -5,23 +5,27 @@ import { Cidade } from '../../model/cidade';
 @Injectable()
 export class CidadeProvider {
 
-	constructor(public http: HttpClient, public commons: CommonsProvider) { }
+	private ENDPOINT_CIDADE: string;
+
+	constructor(public http: HttpClient, public commons: CommonsProvider) {
+		this.ENDPOINT_CIDADE = this.commons.getHost() + "/cidade";
+	}
 
 	listCidades() {
-		return this.http.get(this.commons.getHost() + "/cidade", this.commons.getCommonHeaders());
+		return this.http.get(this.ENDPOINT_CIDADE, this.commons.getCommonHeaders());
 	}
 
 	saveCidade(cidade: Cidade) {
 		return this.http.post(
-			this.commons.getHost() + "/cidade",
+			this.ENDPOINT_CIDADE,
 			"nome=" + cidade.nome,
 			this.commons.getCommonHeaders()
 		);
 	}
 
-	updateCidade(cidade:Cidade){
+	updateCidade(cidade: Cidade) {
 		return this.http.put(
-			this.commons.getHost() + "/cidade",
+			this.ENDPOINT_CIDADE,
 			cidade,
 			this.commons.getPayloadHeaders()
 		);
@@ -37,7 +41,7 @@ export class CidadeProvider {
 		options.headers = this.commons.getCommonHeaders().headers;
 
 		return this.http.delete(
-			this.commons.getHost() + "/cidade",
+			this.ENDPOINT_CIDADE,
 			options
 		);
 	}

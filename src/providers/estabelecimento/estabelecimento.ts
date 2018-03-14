@@ -8,25 +8,29 @@ import { UsuarioProvider } from '../usuario/usuario';
 @Injectable()
 export class EstabelecimentoProvider {
 
-	private ESTABELECIMENTO = "/estabelecimento"
+	private ENDPOINT_ESTABELECIMENTO: string;
+	private ENDPOINT_ESTABELECIMENTO_IMAGE: string;
 
 	constructor(
 		public http: HttpClient,
 		private commons: CommonsProvider,
 		private fileTransfer: FileTransfer,
 		private usuarioService: UsuarioProvider
-	) { }
+	) { 
+		this.ENDPOINT_ESTABELECIMENTO = this.commons.getHost() + "/estabelecimento";
+		this.ENDPOINT_ESTABELECIMENTO_IMAGE = this.ENDPOINT_ESTABELECIMENTO + "/image";
+	}
 
 	listEstabelecimentos() {
 		return this.http.get(
-			this.commons.getHost() + this.ESTABELECIMENTO,
+			this.ENDPOINT_ESTABELECIMENTO,
 			this.commons.getCommonHeaders()
 		);
 	}
 
 	saveEstabelecimento(estabelecimento: Estabelecimento) {
 		return this.http.post(
-			this.commons.getHost() + this.ESTABELECIMENTO,
+			this.ENDPOINT_ESTABELECIMENTO,
 			estabelecimento,
 			this.commons.getPayloadHeaders()
 		);
@@ -88,7 +92,7 @@ export class EstabelecimentoProvider {
 		};
 		return fileTransfer.upload(
 			imageURI,
-			this.commons.getHost() + this.ESTABELECIMENTO + "/image",
+			this.ENDPOINT_ESTABELECIMENTO_IMAGE,
 			options
 		);
 	}
