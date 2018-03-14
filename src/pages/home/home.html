@@ -1,10 +1,20 @@
 <ion-content class="form-content" padding>
-	<h1>Denver Delivery</h1>
+	
+	<ion-grid class="logo-grid">
+		<ion-row justify-content-center align-items-center>
+			<img class="logo-img" src="./assets/imgs/icon.png">
+		</ion-row>
+		<br>
+		<ion-row justify-content-center align-items-center>
+			<h1>Denver Delivery</h1>
+		</ion-row>
+	</ion-grid>
+
 	<ion-item class="login-input">
-		<ion-input placeholder="Login" [(ngModel)] = "dadosLogin.login"></ion-input>
+		<ion-input placeholder="Login" [(ngModel)]="dadosLogin.login"></ion-input>
 	</ion-item>
 	<ion-item class="login-input">
-		<ion-input placeholder="Senha" type="password" [(ngModel)] = "dadosLogin.senha"></ion-input>
+		<ion-input placeholder="Senha" type="password" [(ngModel)]="dadosLogin.senha"></ion-input>
 	</ion-item>
 	<br/>
 	<button ion-button block (click)="login(dadosLogin)">Entrar</button>
