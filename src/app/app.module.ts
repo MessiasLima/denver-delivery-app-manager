@@ -20,6 +20,7 @@ import { ImagePicker } from "@ionic-native/image-picker";
 import { Base64 } from "@ionic-native/base64";
 import { FileTransfer } from "@ionic-native/file-transfer";
 import { CardapioPageModule } from "../pages/cardapio/cardapio.module";
+import { TiposProdutoPageModule } from "../pages/tipos-produto/tipos-produto.module";
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import { CardapioPageModule } from "../pages/cardapio/cardapio.module";
 		EstabelecimentoDetalhePageModule,
 		UsuariosAdmPageModule,
 		UsuarioNewPageModule,
-		CardapioPageModule
+		CardapioPageModule,
+		TiposProdutoPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [

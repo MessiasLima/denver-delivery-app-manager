@@ -5,6 +5,7 @@ import { EstabelecimentoProvider } from '../../providers/estabelecimento/estabel
 import { EstabelecimentoDetalheInfoComponent } from './estabelecimento-detalhe-info/estabelecimento-detalhe-info';
 import { EstabelecimentoNewComponent } from '../estabelecimentos/estabelecimento-new/estabelecimento-new';
 import { UsuariosAdmPage } from '../usuarios-adm/usuarios-adm';
+import { CardapioPage } from '../cardapio/cardapio';
 
 @IonicPage()
 @Component({
@@ -55,5 +56,9 @@ export class EstabelecimentoDetalhePage {
 
 	openUsersManager() {
 		this.navCtrl.push(UsuariosAdmPage, { estabelecimento: this.estabelecimento });
+	}
+
+	openProducts() {
+		this.navCtrl.push(CardapioPage, { estabelecimento: this.estabelecimento });
 	}
 }
