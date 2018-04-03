@@ -21,6 +21,7 @@ import { Base64 } from "@ionic-native/base64";
 import { FileTransfer } from "@ionic-native/file-transfer";
 import { CardapioPageModule } from "../pages/cardapio/cardapio.module";
 import { TiposProdutoPageModule } from "../pages/tipos-produto/tipos-produto.module";
+import { ProdutoProvider } from '../providers/produto/produto';
 
 @NgModule({
 	declarations: [
@@ -57,7 +58,8 @@ import { TiposProdutoPageModule } from "../pages/tipos-produto/tipos-produto.mod
 		EstabelecimentoProvider,
 		ImagePicker,
 		Base64,
-		FileTransfer
+		FileTransfer,
+		ProdutoProvider
 	]
 })
 export class AppModule { }

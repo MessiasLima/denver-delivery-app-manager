@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CardapioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TiposProdutoPage } from '../tipos-produto/tipos-produto';
+import { Estabelecimento } from '../../model/estabelecimento';
 
 @IonicPage()
 @Component({
-  selector: 'page-cardapio',
-  templateUrl: 'cardapio.html',
+	selector: 'page-cardapio',
+	templateUrl: 'cardapio.html',
 })
 export class CardapioPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	estabelecimento: Estabelecimento;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CardapioPage');
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+		this.estabelecimento = navParams.get("estabelecimento");
+	}
 
+	irParaTipoProdutos() {
+		this.navCtrl.push(TiposProdutoPage, { estabelecimento: this.estabelecimento });
+	}
 }
