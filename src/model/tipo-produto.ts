@@ -1,5 +1,5 @@
 export class TipoProduto{
-    id: number;
+    id?: number;
     nome: string;
     idEstabelecimento: number;
 }

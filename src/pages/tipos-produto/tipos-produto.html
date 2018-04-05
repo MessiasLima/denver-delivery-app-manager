@@ -1,6 +1,11 @@
 <ion-header>
 	<ion-navbar color="primary">
 		<ion-title>Tipos de produto</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-left icon-only (click)="alertNovoTipoProduto()">
+				<ion-icon icon-start name="add"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 <ion-content>
@@ -9,11 +14,8 @@
 	<ion-list>
 		<ion-item *ngFor="let tipo of tiposProdutos" icon-left>
 			{{ tipo.nome }}
-			<button (click)="promptUpdateTipoProduto(tipo)" clear ion-button icon-only item-end>
+			<button (click)="alertNovoTipoProduto(tipo)" clear ion-button icon-only item-end>
 				<ion-icon name="md-create"></ion-icon>
-			</button>
-			<button (click)="promptDeleteTipoProduto(tipo)" clear ion-button icon-only item-end>
-				<ion-icon name="trash"></ion-icon>
 			</button>
 		</ion-item>
 	</ion-list>
