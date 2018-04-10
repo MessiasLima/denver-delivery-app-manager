@@ -7,6 +7,20 @@
 			</button>
 		</ion-buttons>
 	</ion-navbar>
+	<ion-searchbar placeholder ="Pesquisar" (ionInput)="filtrarItens($event)"></ion-searchbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
+	
+	<loading [hidden]="!carregando"></loading>
+	<error-message [hidden]="!erro" message="Não foi possível carregar os produtos" (action)="listarProdutos()"></error-message>
+	<ion-list>
+		<ion-item *ngFor="let produto of produtos">
+			<ion-avatar item-start>
+				<img src="./assets/imgs/icon/boss-1.png">
+			</ion-avatar>
+			<h2>{{ produto.nome }}</h2>
+			<ion-badge item-end>{{ produto.tipoProduto.nome }}</ion-badge>
+			<p>{{ produto.descricao }}</p>
+		</ion-item>
+	</ion-list>
 </ion-content>
