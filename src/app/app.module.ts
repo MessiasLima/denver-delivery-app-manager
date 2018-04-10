@@ -21,6 +21,7 @@ import { Base64 } from "@ionic-native/base64";
 import { FileTransfer } from "@ionic-native/file-transfer";
 import { CardapioPageModule } from "../pages/cardapio/cardapio.module";
 import { TiposProdutoPageModule } from "../pages/tipos-produto/tipos-produto.module";
+import { NovoProdutoPageModule } from "../pages/novo-produto/novo-produto.module";
 import { ProdutoProvider } from '../providers/produto/produto';
 
 @NgModule({
@@ -31,7 +32,7 @@ import { ProdutoProvider } from '../providers/produto/produto';
 	imports: [
 		BrowserModule,
 		IonicModule.forRoot(MyApp, {
-			backButtonText: 'Voltar',
+			backButtonText: '',
 			mode: "ios"
 		}),
 		HttpClientModule,
@@ -41,7 +42,8 @@ import { ProdutoProvider } from '../providers/produto/produto';
 		UsuariosAdmPageModule,
 		UsuarioNewPageModule,
 		CardapioPageModule,
-		TiposProdutoPageModule
+		TiposProdutoPageModule,
+		NovoProdutoPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [

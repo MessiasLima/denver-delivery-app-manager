@@ -5,6 +5,7 @@ import { Estabelecimento } from '../../model/estabelecimento';
 import { ProdutoProvider } from '../../providers/produto/produto';
 import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 import { Produto } from '../../model/produto';
+import { NovoProdutoPage } from '../novo-produto/novo-produto';
 
 @IonicPage()
 @Component({
@@ -54,7 +55,7 @@ export class CardapioPage {
 
 	filtrarItens(event: any) {
 		let termoDePesquisa = event.target.value;
-		
+
 		if (termoDePesquisa == undefined) {
 			this.produtos = Object.assign([], this.produtosOriginal);
 			return;
@@ -63,5 +64,9 @@ export class CardapioPage {
 		this.produtos = this.produtosOriginal.filter(produto => {
 			return (produto.nome.toLowerCase().indexOf(termoDePesquisa.toLowerCase()) > -1);
 		})
+	}
+
+	irParaNovoProduto() {
+		this.navCtrl.push(NovoProdutoPage, { estabelecimento: this.estabelecimento });
 	}
 }
