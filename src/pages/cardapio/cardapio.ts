@@ -1,11 +1,11 @@
-import { Component, trigger } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TiposProdutoPage } from '../tipos-produto/tipos-produto';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { ProdutoProvider } from '../../providers/produto/produto';
-import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 import { Produto } from '../../model/produto';
 import { NovoProdutoPage } from '../novo-produto/novo-produto';
+import { DownloadProvider } from '../../providers/download/download';
 
 @IonicPage()
 @Component({
@@ -23,7 +23,8 @@ export class CardapioPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public produtoProvider: ProdutoProvider
+		public produtoProvider: ProdutoProvider,
+		public downloadProvider: DownloadProvider
 	) {
 		this.estabelecimento = navParams.get("estabelecimento");
 	}
@@ -68,5 +69,9 @@ export class CardapioPage {
 
 	irParaNovoProduto() {
 		this.navCtrl.push(NovoProdutoPage, { estabelecimento: this.estabelecimento });
+	}
+
+	getURLImage(url:string){
+		return this.downloadProvider.getUrlImage(url);
 	}
 }

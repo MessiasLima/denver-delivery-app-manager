@@ -4,5 +4,35 @@
 	</ion-navbar>
 </ion-header>
 <ion-content>
+	<ion-list>
+		<ion-item>
+			<ion-label color="primary">Nome</ion-label>
+			<ion-input type="text"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary">Descrição</ion-label>
+			<ion-textarea type="text"></ion-textarea>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary">Tipo de produto</ion-label>
+			<ion-select>
+				<ion-option>
+					Teste
+				</ion-option>
+			</ion-select>
+		</ion-item>
+
+		<ion-item>
+			<ion-label color="primary">Valor</ion-label>
+			<ion-input type="number"></ion-input>
+		</ion-item>
+	</ion-list>
+
+	<div padding>
+		<button ion-button block color="light">Carregar imagem</button>
+		<button ion-button block>Salvar produto</button>
+	</div>
 
 </ion-content>

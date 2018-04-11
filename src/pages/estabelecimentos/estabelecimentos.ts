@@ -10,6 +10,7 @@ import { EstabelecimentoDetalhePage } from '../estabelecimento-detalhe/estabelec
 import { Usuario } from '../../model/usuario';
 import { EstabelecimentoNewComponent } from './estabelecimento-new/estabelecimento-new';
 import { CommonsProvider } from '../../providers/commons/commons';
+import { DownloadProvider } from '../../providers/download/download';
 @IonicPage()
 @Component({
 	selector: 'page-estabelecimentos',
@@ -30,7 +31,8 @@ export class EstabelecimentosPage {
 		private estabelecimentoService: EstabelecimentoProvider,
 		public modalController: ModalController,
 		public commonService: CommonsProvider,
-		private alertController: AlertController
+		private alertController: AlertController,
+		public downloadProvider: DownloadProvider
 	) {
 	}
 
@@ -123,7 +125,7 @@ export class EstabelecimentosPage {
 	}
 
 	getUrlImage(fileName: string): string {
-		return this.estabelecimentoService.getUrlImage(fileName);
+		return this.downloadProvider.getUrlImage(fileName);
 	}
 
 	goToEstabelecimentoDetalhe(estabelecimento: Estabelecimento) {

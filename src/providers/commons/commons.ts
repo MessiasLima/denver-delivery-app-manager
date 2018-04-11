@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export class CommonsProvider {
 	
 	getHost(): string {
-		return "http://192.168.1.6:8080"
+		return "http://192.168.1.3:8080"
 	}
 
 	getAuthorizationStorageKey() {

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavParams, Events, ViewController } from "ionic-angular";
 import { Estabelecimento } from "../../../model/estabelecimento";
 import { EstabelecimentoProvider } from "../../../providers/estabelecimento/estabelecimento";
+import { DownloadProvider } from "../../../providers/download/download";
 
 @Component({
     selector: 'estabelecimento-detalhe-info',
@@ -13,13 +14,14 @@ export class EstabelecimentoDetalheInfoComponent {
         private viewController: ViewController,
         params: NavParams,
         private events: Events,
-        private estabelecimentoService: EstabelecimentoProvider
+        private estabelecimentoService: EstabelecimentoProvider,
+        private downloadProvider: DownloadProvider
     ) {
         this.estabelecimento = params.get("estabelecimento");
     }
 
     getUrlImage(fileName: string) {
-        return this.estabelecimentoService.getUrlImage(fileName);
+        return this.downloadProvider.getUrlImage(fileName);
     }
 
     edit(){

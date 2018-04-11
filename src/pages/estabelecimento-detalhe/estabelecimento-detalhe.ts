@@ -6,6 +6,7 @@ import { EstabelecimentoDetalheInfoComponent } from './estabelecimento-detalhe-i
 import { EstabelecimentoNewComponent } from '../estabelecimentos/estabelecimento-new/estabelecimento-new';
 import { UsuariosAdmPage } from '../usuarios-adm/usuarios-adm';
 import { CardapioPage } from '../cardapio/cardapio';
+import { DownloadProvider } from '../../providers/download/download';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,8 @@ export class EstabelecimentoDetalhePage {
 		public navParams: NavParams,
 		private estabelecimentoService: EstabelecimentoProvider,
 		public modalControler: ModalController,
-		private events: Events
+		private events: Events,
+		private downloadProvider: DownloadProvider
 	) {
 		this.estabelecimento = navParams.get("data");
 		this.estabelecimentoOriginal = navParams.get("data");
@@ -44,7 +46,7 @@ export class EstabelecimentoDetalhePage {
 	}
 
 	getURLImage(fileName: string) {
-		return this.estabelecimentoService.getUrlImage(fileName);
+		return this.downloadProvider.getUrlImage(fileName);
 	}
 
 	openInfo() {

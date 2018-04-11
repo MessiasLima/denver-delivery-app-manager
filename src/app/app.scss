@@ -14,13 +14,6 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.item-input{
-    padding: 0px !important;
-}
-
-.item-select{
-    padding: 0px !important;
-}
 
 .card{
    width: 97%;
@@ -35,7 +28,7 @@
 }
 
 .content {
-    background: linear-gradient(135deg, rgba(176,190,197,1) 0%, rgba(236,239,241,1) 100%);
+    background: rgb(236, 238, 236);
 }
 
 .form-content {

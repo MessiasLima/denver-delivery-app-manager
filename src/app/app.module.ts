@@ -23,6 +23,7 @@ import { CardapioPageModule } from "../pages/cardapio/cardapio.module";
 import { TiposProdutoPageModule } from "../pages/tipos-produto/tipos-produto.module";
 import { NovoProdutoPageModule } from "../pages/novo-produto/novo-produto.module";
 import { ProdutoProvider } from '../providers/produto/produto';
+import { DownloadProvider } from '../providers/download/download';
 
 @NgModule({
 	declarations: [
@@ -61,7 +62,8 @@ import { ProdutoProvider } from '../providers/produto/produto';
 		ImagePicker,
 		Base64,
 		FileTransfer,
-		ProdutoProvider
+		ProdutoProvider,
+    	DownloadProvider
 	]
 })
 export class AppModule { }

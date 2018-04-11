@@ -96,8 +96,4 @@ export class EstabelecimentoProvider {
 			options
 		);
 	}
-
-	getUrlImage(fileName: string): string {
-		return this.commons.getHost() + "/download/" + (fileName || 'default.jpg');
-	}
 }
