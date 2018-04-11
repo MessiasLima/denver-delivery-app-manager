@@ -7,6 +7,7 @@ import { CidadeProvider } from '../../../providers/cidade/cidade';
 import { Cidade } from '../../../model/cidade';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ToastController, LoadingController, Loading, ViewController, Events, NavParams } from 'ionic-angular';
+import { DownloadProvider } from '../../../providers/download/download';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class EstabelecimentoNewComponent {
         public loadingController: LoadingController,
         public viewController: ViewController,
         public events: Events,
-        public navParams: NavParams
+        public navParams: NavParams,
+        public downloadProvider: DownloadProvider
     ) {
         this.buildFormValidator();
     }
@@ -163,7 +165,7 @@ export class EstabelecimentoNewComponent {
     }
 
     getImageUrl(fileName: string) {
-        return this.estabelecimentoService.getUrlImage(fileName);
+        return this.downloadProvider.getUrlImage(fileName);
     }
 
     selectChange(cidadeId: any) {

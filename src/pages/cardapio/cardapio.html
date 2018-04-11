@@ -22,8 +22,9 @@
 					<img src="{{ getURLImage(produto.imagem) }}">
 				</ion-avatar>
 				<h2>{{ produto.nome }}</h2>
-				<ion-badge item-end>{{ produto.tipoProduto.nome }}</ion-badge>
 				<p>{{ produto.descricao }}</p>
+				<p ion-text color="secondary">R$ {{ produto.valor | number: '1.2-2' }}</p>
+				<ion-badge item-end>{{ produto.tipoProduto.nome }}</ion-badge>
 			</ion-item>
 		</ion-list>
 	</ion-scroll>
