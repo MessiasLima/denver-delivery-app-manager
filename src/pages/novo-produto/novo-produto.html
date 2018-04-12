@@ -4,35 +4,38 @@
 	</ion-navbar>
 </ion-header>
 <ion-content>
-	<ion-list>
+	<loading [hidden]="!carregando"></loading>
+	<error-message [hidden]="!erro"></error-message>
+	<ion-list [hidden]="carregando || erro">
 		<ion-item>
 			<ion-label color="primary">Nome</ion-label>
-			<ion-input type="text"></ion-input>
+			<ion-input [(ngModel)]="produto.nome" type="text"></ion-input>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary">Descrição</ion-label>
-			<ion-textarea type="text"></ion-textarea>
+			<ion-textarea [(ngModel)]="produto.descricao" type="text"></ion-textarea>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary">Tipo de produto</ion-label>
-			<ion-select>
-				<ion-option>
-					Teste
+			<ion-select [(ngModel)]="produto.idTipoProduto" >
+				<ion-option *ngFor="let tipo of tiposDeProtudos" value="{{ tipo.id }}">
+					{{ tipo.nome }}
 				</ion-option>
 			</ion-select>
 		</ion-item>
 
 		<ion-item>
 			<ion-label color="primary">Valor</ion-label>
-			<ion-input type="number"></ion-input>
+			<ion-input type="number" [(ngModel)]="produto.valor" (ionBlur)="converterMoeda($event)"></ion-input>
 		</ion-item>
 	</ion-list>
 
-	<div padding>
-		<button ion-button block color="light">Carregar imagem</button>
-		<button ion-button block>Salvar produto</button>
+	<div [hidden]="carregando || erro" padding>
+		<button ion-button block color="light" (click)="selecionarImagem()">Carregar imagem</button>
+		<img src="{{ imageURI || getImageUrl(produto.imagem) }}" alt="" />
+		<button (click)="salvarProduto(produto)" ion-button block>Salvar produto</button>
 	</div>
 
 </ion-content>

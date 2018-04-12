@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { TiposProdutoPage } from '../tipos-produto/tipos-produto';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { ProdutoProvider } from '../../providers/produto/produto';
 import { Produto } from '../../model/produto';
 import { NovoProdutoPage } from '../novo-produto/novo-produto';
 import { DownloadProvider } from '../../providers/download/download';
+import { EventType } from '../../model/events';
 
 @IonicPage()
 @Component({
@@ -24,13 +25,28 @@ export class CardapioPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public produtoProvider: ProdutoProvider,
-		public downloadProvider: DownloadProvider
+		public downloadProvider: DownloadProvider,
+		public events: Events
 	) {
 		this.estabelecimento = navParams.get("estabelecimento");
 	}
 
 	ionViewDidLoad() {
 		this.listarProdutos();
+		this.registrarListenersEventos();
+	}
+
+	ionViewDidUnload() {
+		this.removerListenersEventos();
+	}
+
+	private registrarListenersEventos() {
+		this.events.subscribe(EventType.EVENT_RECARREGAR_PRODUTOS, () => {
+			this.listarProdutos();
+		});
+	}
+	private removerListenersEventos() {
+		this.events.unsubscribe(EventType.EVENT_RECARREGAR_PRODUTOS)
 	}
 
 	irParaTipoProdutos() {
@@ -71,7 +87,7 @@ export class CardapioPage {
 		this.navCtrl.push(NovoProdutoPage, { estabelecimento: this.estabelecimento });
 	}
 
-	getURLImage(url:string){
+	getURLImage(url: string) {
 		return this.downloadProvider.getUrlImage(url);
 	}
 }

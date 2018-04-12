@@ -25,7 +25,7 @@ export class ProdutoProvider {
 	}
 
 	obterTipoProdutosPorEstabelecimento(estabelecimento: Estabelecimento) {
-		return this.http.get(
+		return this.http.get<TipoProduto>(
 			this.ENDPOINT_TIPO_PRODUTO_ESTABELECIMENTO + "/" + estabelecimento.id,
 			this.commonsProvider.getCommonHeaders()
 		);
@@ -43,6 +43,14 @@ export class ProdutoProvider {
 		return this.http.get(
 			this.ENDPOINT_PRODUTO_ESTABELECIMENTO + "/" + estabelecimento.id,
 			this.commonsProvider.getCommonHeaders()
+		);
+	}
+
+	salvarProduto(produto: Produto){
+		return this.http.post(
+			this.ENDPOINT_PRODUTO,
+			produto,
+			this.commonsProvider.getPayloadHeaders()
 		);
 	}
 }
