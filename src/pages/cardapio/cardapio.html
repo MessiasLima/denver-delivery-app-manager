@@ -17,7 +17,7 @@
 	<error-message [hidden]="!erro" message="Não foi possível carregar os produtos" (action)="listarProdutos()"></error-message>
 	<ion-scroll style="height: 100%;">
 		<ion-list>
-			<ion-item *ngFor="let produto of produtos">
+			<ion-item (click)="editarProduto(produto)" *ngFor="let produto of produtos">
 				<ion-avatar item-start>
 					<img src="{{ getURLImage(produto.imagem) }}">
 				</ion-avatar>

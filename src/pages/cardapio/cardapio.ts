@@ -84,7 +84,19 @@ export class CardapioPage {
 	}
 
 	irParaNovoProduto() {
-		this.navCtrl.push(NovoProdutoPage, { estabelecimento: this.estabelecimento });
+		this.salvarProduto(undefined);
+	}
+
+	private salvarProduto(produto?: Produto) {
+		this.navCtrl.push(NovoProdutoPage, {
+			estabelecimento: this.estabelecimento,
+			produto: produto
+		});
+	}
+
+	editarProduto(produto: Produto){
+		console.log(produto);
+		this.salvarProduto(produto);
 	}
 
 	getURLImage(url: string) {

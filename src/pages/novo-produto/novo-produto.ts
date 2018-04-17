@@ -36,6 +36,7 @@ export class NovoProdutoPage {
 
 	ionViewDidLoad() {
 		this.estabelecimento = this.navParams.get("estabelecimento");
+		this.produto = this.navParams.get("produto");
 		this.produto.idEstabelecimento = this.estabelecimento.id;
 		this.carregarTipoProduto();
 	}
