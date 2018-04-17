@@ -4,6 +4,7 @@ import { CommonsProvider } from '../commons/commons';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer';
 import { UsuarioProvider } from '../usuario/usuario';
+import { UtilProvider } from '../util/util';
 
 @Injectable()
 export class EstabelecimentoProvider {
@@ -15,7 +16,8 @@ export class EstabelecimentoProvider {
 		public http: HttpClient,
 		private commons: CommonsProvider,
 		private fileTransfer: FileTransfer,
-		private usuarioService: UsuarioProvider
+		private usuarioService: UsuarioProvider,
+		private utilProvider: UtilProvider
 	) { 
 		this.ENDPOINT_ESTABELECIMENTO = this.commons.getHost() + "/estabelecimento";
 		this.ENDPOINT_ESTABELECIMENTO_IMAGE = this.ENDPOINT_ESTABELECIMENTO + "/image";
@@ -71,13 +73,8 @@ export class EstabelecimentoProvider {
 		return estabelecimento;
 	}
 
-	private getFileExtensions(imageUri :string): string{
-		let array = imageUri.split(".");
-		return array[array.length - 1];
-	}
-
 	saveImage(imageURI: string, idEstabelecimento: number) {
-		let extension = this.getFileExtensions(imageURI);
+		let extension = this.utilProvider.getFileExtensions(imageURI);
 		let fileTransfer = this.fileTransfer.create();
 		let options : FileUploadOptions ={
 			fileKey: "file",

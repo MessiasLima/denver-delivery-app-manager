@@ -24,6 +24,7 @@ import { TiposProdutoPageModule } from "../pages/tipos-produto/tipos-produto.mod
 import { NovoProdutoPageModule } from "../pages/novo-produto/novo-produto.module";
 import { ProdutoProvider } from '../providers/produto/produto';
 import { DownloadProvider } from '../providers/download/download';
+import { UtilProvider } from '../providers/util/util';
 
 @NgModule({
 	declarations: [
@@ -63,7 +64,8 @@ import { DownloadProvider } from '../providers/download/download';
 		Base64,
 		FileTransfer,
 		ProdutoProvider,
-    	DownloadProvider
+		DownloadProvider,
+		UtilProvider
 	]
 })
 export class AppModule { }

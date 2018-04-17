@@ -75,17 +75,39 @@ export class NovoProdutoPage {
 		}
 		this.carregando = true;
 		this.produtoProvider.salvarProduto(produto).subscribe(
-			(data) => {
-				this.mostrarMensagem("Produto salvo com sucesso");
-				this.carregando = false;
+			(data:any) => {
+				this.salvarImagem(data);
 				this.events.publish(EventType.EVENT_RECARREGAR_PRODUTOS);
-				this.navCtrl.pop();
 			},
 			(err) => {
 				this.mostrarMensagem("Falha ao salvar produto");
 				this.carregando = false;
 			}
 		);
+	}
+
+	private salvarImagem(produto: Produto){
+		if(this.imageURI){
+			this.produtoProvider.salvarImagem(this.imageURI, produto.id).then(
+				(data)=>{
+					this.carregando = false;
+					this.mostrarMensagem("Produto salvo");
+					this.events.publish(EventType.EVENT_RECARREGAR_PRODUTOS);
+					this.navCtrl.pop();
+				},
+				(err)=>{
+					this.carregando = false;
+					this.mostrarMensagem("Produto salvo, mas com erros. Por favor, verifique o produto cadastrado");
+					this.events.publish(EventType.EVENT_RECARREGAR_PRODUTOS);
+					this.navCtrl.pop();
+				}
+			);
+		}else{
+			this.carregando = false;
+			this.mostrarMensagem("Produto salvo");
+			this.events.publish(EventType.EVENT_RECARREGAR_PRODUTOS);
+			this.navCtrl.pop();
+		}
 	}
 
 	private produtoEhValido(produto: Produto): boolean {
