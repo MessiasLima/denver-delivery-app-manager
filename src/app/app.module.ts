@@ -25,6 +25,7 @@ import { NovoProdutoPageModule } from "../pages/novo-produto/novo-produto.module
 import { ProdutoProvider } from '../providers/produto/produto';
 import { DownloadProvider } from '../providers/download/download';
 import { UtilProvider } from '../providers/util/util';
+import { FormaPagamentoPageModule } from '../pages/forma-pagamento/forma-pagamento.module';
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,8 @@ import { UtilProvider } from '../providers/util/util';
 		UsuarioNewPageModule,
 		CardapioPageModule,
 		TiposProdutoPageModule,
-		NovoProdutoPageModule
+		NovoProdutoPageModule,
+		FormaPagamentoPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [

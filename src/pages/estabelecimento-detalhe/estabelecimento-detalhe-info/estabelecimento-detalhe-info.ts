@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { NavParams, Events, ViewController } from "ionic-angular";
 import { Estabelecimento } from "../../../model/estabelecimento";
-import { EstabelecimentoProvider } from "../../../providers/estabelecimento/estabelecimento";
 import { DownloadProvider } from "../../../providers/download/download";
 
 @Component({
@@ -14,7 +13,6 @@ export class EstabelecimentoDetalheInfoComponent {
         private viewController: ViewController,
         params: NavParams,
         private events: Events,
-        private estabelecimentoService: EstabelecimentoProvider,
         private downloadProvider: DownloadProvider
     ) {
         this.estabelecimento = params.get("estabelecimento");

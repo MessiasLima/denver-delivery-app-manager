@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
 import { Estabelecimento } from '../../model/estabelecimento';
-import { EstabelecimentoProvider } from '../../providers/estabelecimento/estabelecimento';
 import { EstabelecimentoDetalheInfoComponent } from './estabelecimento-detalhe-info/estabelecimento-detalhe-info';
 import { EstabelecimentoNewComponent } from '../estabelecimentos/estabelecimento-new/estabelecimento-new';
 import { UsuariosAdmPage } from '../usuarios-adm/usuarios-adm';
@@ -21,7 +20,6 @@ export class EstabelecimentoDetalhePage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		private estabelecimentoService: EstabelecimentoProvider,
 		public modalControler: ModalController,
 		private events: Events,
 		private downloadProvider: DownloadProvider
