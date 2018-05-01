@@ -101,10 +101,10 @@ export class EstabelecimentoDetalhePage {
 			});
 		});
 
-		alert.addButton('Cancel');
+		alert.addButton('Cancelar');
 
 		alert.addButton({
-			text: 'Okay',
+			text: 'Salvar',
 			handler: data => {
 				this.salvarFormasDePagamentoSelecionadas(data);
 			}
