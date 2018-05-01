@@ -10,7 +10,7 @@
 			<h1>{{ estabelecimento.nome }}</h1>
 		</ion-card-header>
 		<ion-list>
-			<button ion-item (click)="openInfo()"> 
+			<button ion-item (click)="openInfo()">
 				<ion-avatar item-start>
 					<img src="./assets/imgs/icon/customer-service-1.png">
 				</ion-avatar>
@@ -30,6 +30,13 @@
 				</ion-avatar>
 				<h2>Usuários</h2>
 				<p>Gerencie quem deve usar o aplicativo</p>
+			</button>
+			<button ion-item (click)="promptFormasPagamento()">
+				<ion-avatar item-start>
+					<img src="./assets/imgs/icon/shopping-store.png">
+				</ion-avatar>
+				<h2>Formas de pagamento</h2>
+				<p>Selecione os tipos de pagamento que seu estabelecimento aceita</p>
 			</button>
 		</ion-list>
 	</ion-card>
