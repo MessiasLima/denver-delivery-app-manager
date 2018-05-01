@@ -2,7 +2,7 @@
 	<ion-navbar color="primary">
 		<ion-title>Formas de pagamento</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-left icon-only>
+			<button ion-button icon-left icon-only (click)="promptFormaPagamento()">
 				<ion-icon icon-start name="add"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -13,7 +13,7 @@
 		<ion-item *ngFor="let f of formasPagamento">
 			<ion-icon name="cash" item-start></ion-icon>
 			{{ f.nome }}
-			<button clear ion-button icon-only item-end>
+			<button clear ion-button icon-only item-end (click)="promptFormaPagamento(f)">
 				<ion-icon name="md-create"></ion-icon>
 			</button>
 		</ion-item>

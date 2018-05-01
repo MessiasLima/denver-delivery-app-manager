@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommonsProvider } from '../commons/commons';
+import { FormaPagamento } from '../../model/forma-pagamento';
 
 @Injectable()
 export class FormaPagamentoProvider {
@@ -11,7 +12,11 @@ export class FormaPagamentoProvider {
 		this.ENDPOINT_FORMA_PAGAMENTO = commonsProvider.getHost() + "/forma-pagamento"
 	}
 
-	listarFormasDePagamento(){
+	listarFormasDePagamento() {
 		return this.http.get(this.ENDPOINT_FORMA_PAGAMENTO, this.commonsProvider.getCommonHeaders());
+	}
+
+	salvar(formaPagamento: FormaPagamento) {
+		return this.http.post(this.ENDPOINT_FORMA_PAGAMENTO, formaPagamento, this.commonsProvider.getPayloadHeaders());
 	}
 }
