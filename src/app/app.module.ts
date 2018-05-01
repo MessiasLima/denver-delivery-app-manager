@@ -26,6 +26,7 @@ import { ProdutoProvider } from '../providers/produto/produto';
 import { DownloadProvider } from '../providers/download/download';
 import { UtilProvider } from '../providers/util/util';
 import { FormaPagamentoPageModule } from '../pages/forma-pagamento/forma-pagamento.module';
+import { FormaPagamentoProvider } from '../providers/forma-pagamento/forma-pagamento';
 
 @NgModule({
 	declarations: [
@@ -67,7 +68,8 @@ import { FormaPagamentoPageModule } from '../pages/forma-pagamento/forma-pagamen
 		FileTransfer,
 		ProdutoProvider,
 		DownloadProvider,
-		UtilProvider
+		UtilProvider,
+    	FormaPagamentoProvider
 	]
 })
 export class AppModule { }

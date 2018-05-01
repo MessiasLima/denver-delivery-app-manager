@@ -1,8 +1,21 @@
 <ion-header>
-	<ion-navbar>
+	<ion-navbar color="primary">
 		<ion-title>Formas de pagamento</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-left icon-only>
+				<ion-icon icon-start name="add"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-navbar>
 </ion-header>
-<ion-content padding>
-
+<ion-content>
+	<ion-list>
+		<ion-item *ngFor="let f of formasPagamento">
+			<ion-icon name="cash" item-start></ion-icon>
+			{{ f.nome }}
+			<button clear ion-button icon-only item-end>
+				<ion-icon name="md-create"></ion-icon>
+			</button>
+		</ion-item>
+	</ion-list>
 </ion-content>

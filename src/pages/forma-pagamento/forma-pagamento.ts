@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormaPagamentoProvider } from '../../providers/forma-pagamento/forma-pagamento';
+import { FormaPagamento } from '../../model/forma-pagamento';
 
 @IonicPage()
 @Component({
@@ -8,11 +10,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FormaPagamentoPage {
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
-	}
+	carregando: boolean = false
+	erro: boolean = false;
+	formasPagamento: FormaPagamento[];
+
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public formaPagamentoProvider: FormaPagamentoProvider
+	) { }
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad FormaPagamentoPage');
+		this.listarFormasPagamento();
 	}
 
+	listarFormasPagamento() {
+		this.erro = false;
+		this.carregando = true;
+		this.formaPagamentoProvider.listarFormasDePagamento().subscribe(
+			(data: any) => {
+				this.carregando = false;
+				this.formasPagamento = data;
+			}, (err) => {
+				this.erro = true;
+			}
+		);
+	}
 }
